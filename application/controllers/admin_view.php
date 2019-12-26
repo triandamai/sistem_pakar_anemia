@@ -5,9 +5,17 @@ class admin_view extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+        $data['title'] = "Admin | Login";
+        $this->load->view('header',$data);
+        $this->load->view('admin/auth-login',$data);
+        $this->load->view('footer',$data);
     }
 
-   
+    public function admin_dashboard(){
+        $data['title'] = "Admin | Home";
+        $this->load->view('header',$data);
+        $this->load->view('admin/home',$data);
+        $this->load->view('footer',$data);
+    }
     
 }
