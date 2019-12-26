@@ -8,6 +8,4 @@ class admin_event extends CI_Controller {
 		$this->load->view('welcome_message');
     }
 
-  
-    
 }
