@@ -5,11 +5,11 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="section-header">
-              <h1>Selamat Datang</h1>
+              <h1><?= $nama_section;?></h1>
             </div>
             <div class="section-body">
-              <h2 class="section-title">This is Example Page</h2>
-              <p class="section-lead">This page is just an example for you to create your own page.</p>
+              <h2 class="section-title"><?= $title_section;?></h2>
+              <p class="section-lead"><?= $subtitle_section;?></p>
               <div class="card">
                   <div class="card-header">
                     <h4>Example Card</h4>

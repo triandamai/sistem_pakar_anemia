@@ -33,7 +33,7 @@
             <a href="index.html">A</a>
           </div>
           <ul class="sidebar-menu">     
-              <li><a class="nav-link" href="<?= base_url()?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+              <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
               <li class="menu-header">Penyakit</li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Penyakit</span></a>

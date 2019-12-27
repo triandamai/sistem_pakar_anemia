@@ -6,9 +6,8 @@
                 <div class="section-header">
                     <h1><?= $nama_section;?></h1>
                     <div class="section-header-breadcrumb">
-                        <div class="breadcrumb-item active"><a href="#">Home</a></div>
-                        <div class="breadcrumb-item"><a href="#">Penyakit</a></div>
-                        <div class="breadcrumb-item">Data Penyakit</div>
+                        <div class="breadcrumb-item active"><a href="<?= base_url()?>index.php/admin_view/">Home</a></div>
+                        <div class="breadcrumb-item"><?= $nama_section;?></div>
                     </div>
                 </div>
                 <div class="section-body">
