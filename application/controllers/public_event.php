@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class user_view extends CI_Controller {
+class user_event extends CI_Controller {
 
 	public function index()
 	{
@@ -18,13 +18,7 @@ class user_view extends CI_Controller {
 	
 	public function user_login()
 	{
-		$data['title'] = "Admin | Login";
-        $data['nama_section'] = "Login";
-        $data['title_section'] = "Selamat Datang!";
-        $data['subtitle_section'] = "This page is just an example for you to create your own page.";
-        $this->load->view('header',$data);
-            $this->load->view('user/auth-login',$data);
-        $this->load->view('footer',$data);
+		
 	}
 	
 	public function user_register()

@@ -20,4 +20,3 @@
   <link rel="stylesheet" href="<?= base_url()?>/assets/css/components.css">
 </head>
 
-<body>
