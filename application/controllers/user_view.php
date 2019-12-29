@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class user_view extends CI_Controller {
+class User_view extends CI_Controller {
 
 	public function index()
 	{

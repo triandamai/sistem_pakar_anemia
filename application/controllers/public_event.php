@@ -1,7 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class user_event extends CI_Controller {
+class Public_event extends CI_Controller {
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('DataModel');
+		$this->load->library('bcrypt');
+	}
 
 	public function index()
 	{
