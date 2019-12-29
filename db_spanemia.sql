@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29 Des 2019 pada 07.22
+-- Generation Time: 29 Des 2019 pada 08.08
 -- Versi Server: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -29,10 +29,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` varchar(36) NOT NULL,
+  `id_admin` varchar(36) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `artikel`
+--
+
+CREATE TABLE `artikel` (
+  `id_artikel` varchar(30) NOT NULL,
+  `id_admin` varchar(36) NOT NULL,
+  `judul_artikel` varchar(150) NOT NULL,
+  `isi_artikel` text NOT NULL,
+  `thumbnail` varchar(20) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -110,7 +126,7 @@ CREATE TABLE `penyakit` (
 --
 
 CREATE TABLE `user` (
-  `id` varchar(36) NOT NULL,
+  `id_user` varchar(36) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -126,9 +142,30 @@ CREATE TABLE `user` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_admin`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`id_artikel`),
+  ADD KEY `fk_artikel_admin` (`id_admin`);
+
+--
+-- Indexes for table `detail_konsultasi`
+--
+ALTER TABLE `detail_konsultasi`
+  ADD KEY `fk_konsultasi_detail` (`id_konsultasi`),
+  ADD KEY `fk_konsultasi_gejala` (`id_gejala`);
+
+--
+-- Indexes for table `detail_penyakit`
+--
+ALTER TABLE `detail_penyakit`
+  ADD KEY `fk_penyakit_detail` (`id_penyakit`),
+  ADD KEY `fk_penyakit_gejala` (`id_gejala`);
 
 --
 -- Indexes for table `gejala`
@@ -140,7 +177,9 @@ ALTER TABLE `gejala`
 -- Indexes for table `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  ADD PRIMARY KEY (`id_konsultasi`);
+  ADD PRIMARY KEY (`id_konsultasi`),
+  ADD KEY `fk_konsultasi_penyakit` (`id_penyakit`),
+  ADD KEY `fk_konsultasi_user` (`id_user`);
 
 --
 -- Indexes for table `penyakit`
@@ -152,9 +191,40 @@ ALTER TABLE `penyakit`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `artikel`
+--
+ALTER TABLE `artikel`
+  ADD CONSTRAINT `fk_artikel_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`);
+
+--
+-- Ketidakleluasaan untuk tabel `detail_konsultasi`
+--
+ALTER TABLE `detail_konsultasi`
+  ADD CONSTRAINT `fk_konsultasi_detail` FOREIGN KEY (`id_konsultasi`) REFERENCES `konsultasi` (`id_konsultasi`),
+  ADD CONSTRAINT `fk_konsultasi_gejala` FOREIGN KEY (`id_gejala`) REFERENCES `gejala` (`id_gejala`);
+
+--
+-- Ketidakleluasaan untuk tabel `detail_penyakit`
+--
+ALTER TABLE `detail_penyakit`
+  ADD CONSTRAINT `fk_penyakit_detail` FOREIGN KEY (`id_penyakit`) REFERENCES `penyakit` (`id_penyakit`),
+  ADD CONSTRAINT `fk_penyakit_gejala` FOREIGN KEY (`id_gejala`) REFERENCES `gejala` (`id_gejala`);
+
+--
+-- Ketidakleluasaan untuk tabel `konsultasi`
+--
+ALTER TABLE `konsultasi`
+  ADD CONSTRAINT `fk_konsultasi_penyakit` FOREIGN KEY (`id_penyakit`) REFERENCES `penyakit` (`id_penyakit`),
+  ADD CONSTRAINT `fk_konsultasi_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
