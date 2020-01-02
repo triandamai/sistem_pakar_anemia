@@ -23,6 +23,10 @@ class DataModel extends CI_Model{
         return $query;
     }
 
+    function set_data($field,$tipe){
+        return $this->db->set($field,$tipe,FALSE);
+    }
+
     function from($table){
         $query = $this->db->from($table);
         return $query;
@@ -80,7 +84,7 @@ class DataModel extends CI_Model{
         return $query;
     }
     
-    function Login($table, $where) {
+    function get_whereArr($table, $where) {
         return $this->db->get_where($table, $where);
     }
     function count_all($table)
