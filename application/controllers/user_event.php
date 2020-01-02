@@ -17,8 +17,8 @@ class User_event extends CI_Controller {
 	
 	public function user_login()
 	{
-		if($this->input->post('kirim')){
-			$username = $this->input->post('username');
+		if($this->input->post('email')){
+			$username = $this->input->post('email');
 			$password = $this->input->post('password');
 
 			$cek = $this->DataModel->getWhere('username',$username);
@@ -42,14 +42,27 @@ class User_event extends CI_Controller {
 
 					//kie bar di redirect maring view apa pwe?
 					//aku bingung hehe
+					//A: mng halaman user_view/index
+					redirect("user_view");
 
 				}else{
-					echo "Password yang anda masukkan salah!";
+					$this->session->set_flashdata('login-error',
+					'<div class="alert alert-danger mr-auto">Login Gagal</div>'); 
+					  redirect("user_view/user_login");
+					
 				}
 			}else{
-				echo "Akun tidak ditemukan";
+				$this->session->set_flashdata('login-error',
+					'<div class="alert alert-danger mr-auto">Tidak Menemkan Akun</div>');
+					  redirect("user_view/user_login");
+				
 			}
 
+		}else 
+		{
+			$this->session->set_flashdata('login-error',
+					'<div class="alert alert-danger mr-auto">Server Error Coba Lagi</div>');
+					  redirect("user_view/user_login");
 		}
 	}
 

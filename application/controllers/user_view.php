@@ -29,7 +29,13 @@ class User_view extends CI_Controller {
 	
 	public function user_register()
 	{
-		
+		$data['title'] = "Admin | Daftar";
+        $data['nama_section'] = "Membuat Akun";
+        $data['title_section'] = "Selamat Datang!";
+        $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+        $this->load->view('header',$data);
+            $this->load->view('user/auth-register',$data);
+        $this->load->view('footer',$data);
 	}
 	
 	public function user_history()
