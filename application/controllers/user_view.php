@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class User_view extends CI_Controller
 {
@@ -17,9 +17,9 @@ class User_view extends CI_Controller
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
             $this->load->view('header', $data);
-            $this->load->view('user/side-nav-top', $data);
-            $this->load->view('user/home', $data);
-            $this->load->view('user/side-nav-bottom', $data);
+                $this->load->view('user/side-nav-top', $data);
+                $this->load->view('user/home', $data);
+                $this->load->view('user/side-nav-bottom', $data);
             $this->load->view('footer', $data);
         }else{
             redirect('user_view/user_login');
@@ -36,7 +36,7 @@ class User_view extends CI_Controller
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
             $this->load->view('header', $data);
-            $this->load->view('user/auth-login', $data);
+                $this->load->view('user/auth-login', $data);
             $this->load->view('footer', $data);
         }
     }

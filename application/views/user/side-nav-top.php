@@ -11,14 +11,14 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="<?= base_url()?>/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Desi Putri</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, <?=$this->session->userdata['user_data']['username']?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
               <div class="dropdown-divider"></div>
-              <a href="<?= base_url()?>index.php/admin_event/admin_logout" class="dropdown-item has-icon text-danger">
+              <a href="<?= base_url()?>index.php/user_event/user_logout" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -35,7 +35,7 @@
           </div>
           <ul class="sidebar-menu">     
               <li>
-                <a class="nav-link" href="<?= base_url()?>index.php/admin_view/">
+                <a class="nav-link" href="<?= base_url()?>index.php/user_view/">
                   <i class="fas fa-fire"></i> 
                   <span>Dashboard</span>
                 </a>

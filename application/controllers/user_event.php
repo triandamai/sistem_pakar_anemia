@@ -49,7 +49,7 @@ class User_event extends CI_Controller
 				} else {
 					$this->session->set_flashdata(
 						'login-error',
-						'<div class="alert alert-danger mr-auto">Login Gagal</div>'
+						'<div class="alert alert-danger mr-auto">Password salah</div>'
 					);
 					redirect("user_view/user_login");
 				}
@@ -60,13 +60,14 @@ class User_event extends CI_Controller
 				);
 				redirect("user_view/user_login");
 			}
-		} else {
-			$this->session->set_flashdata(
-				'login-error',
-				'<div class="alert alert-danger mr-auto">Server Error Coba Lagi</div>'
-			);
-			redirect("user_view/user_login");
-		}
+		} 
+		// else {
+		// 	$this->session->set_flashdata(
+		// 		'login-error',
+		// 		'<div class="alert alert-danger mr-auto">Server Error Coba Lagi</div>'
+		// 	);
+		// 	redirect("user_view/user_login");
+		// }
 	}
 
 	public function user_register()
@@ -128,4 +129,14 @@ class User_event extends CI_Controller
 			}
 		}
 	}
+
+	function user_logout(){
+		$sess_array = array(
+			'email' => '',
+		);
+		$this->session->unset_userdata('user_data', $sess_array);
+		redirect('/user_view/user_login', 'refresh');
+		exit();
+	}
+
 }

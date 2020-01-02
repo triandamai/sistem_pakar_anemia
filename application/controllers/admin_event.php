@@ -10,7 +10,6 @@ class Admin_event extends CI_Controller
 		parent::__construct();
 		$this->load->model('DataModel');
 		$this->load->library('bcrypt');
-		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -18,17 +17,18 @@ class Admin_event extends CI_Controller
 		$this->load->view('welcome_message');
 	}
 
-	public function login()
+	public function admin_login()
 	{
 		if ($this->input->post('kirim')) {
-			$username = $this->input->post('username');
+			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
-			$cek = $this->DataModel->getWhere('username', $username);
-			$cek = $this->DataModel->getData('user')->row();
+			$cek = $this->DataModel->getWhere('email', $email);
+			$cek = $this->DataModel->getData('admin')->row();
 
 			if ($cek != null) {
-				if ($this->bcrypt->check_password($password, $cek->password)) {
+				// if ($this->bcrypt->check_password($password, $cek->password)) {
+				if ($cek->password == $password) {
 					$datas = array(
 						"updated_at" => date("Y-m-d H:i:s")
 					);
@@ -45,18 +45,33 @@ class Admin_event extends CI_Controller
 
 					//kie bar di redirect maring view apa pwe?
 					//aku bingung hehe
+					redirect('admin_view');
 
 				} else {
-					echo "Password yang anda masukkan salah!";
+					$this->session->set_flashdata(
+						'login-error',
+						'<div class="alert alert-danger mr-auto">Password salah</div>'
+					);
+					redirect('admin_view/admin_login');
 				}
 			} else {
-				echo "Akun tidak ditemukan";
+				$this->session->set_flashdata(
+					'login-error',
+					'<div class="alert alert-danger mr-auto">Akun tidak ditemukan</div>'
+				);
+				redirect('admin_view/admin_login');
 			}
 		}
 	}
 
+
 	public function admin_logout()
 	{
-		redirect(base_url("index.php/admin_view/admin_login"));
+		$sess_array = array(
+			'email' => '',
+		);
+		$this->session->unset_userdata('admin_data', $sess_array);
+		redirect('/admin_view/admin_login', 'refresh');
+		exit();
 	}
 }
