@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29 Des 2019 pada 08.08
+-- Generation Time: 02 Jan 2020 pada 08.34
 -- Versi Server: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -71,6 +71,7 @@ CREATE TABLE `detail_konsultasi` (
 --
 
 CREATE TABLE `detail_penyakit` (
+  `id_detail_penyakit` varchar(5) NOT NULL,
   `id_penyakit` varchar(5) NOT NULL,
   `id_gejala` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -164,6 +165,7 @@ ALTER TABLE `detail_konsultasi`
 -- Indexes for table `detail_penyakit`
 --
 ALTER TABLE `detail_penyakit`
+  ADD PRIMARY KEY (`id_detail_penyakit`),
   ADD KEY `fk_penyakit_detail` (`id_penyakit`),
   ADD KEY `fk_penyakit_gejala` (`id_gejala`);
 
