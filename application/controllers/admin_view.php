@@ -4,6 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin_view extends CI_Controller
 {
 
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('DataModel');
+    }
+
     public function index()
     {
         if ($this->isLoggedIn()) {
@@ -39,6 +45,7 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "Data Penyakit";
             $data['title_section'] = "Menampilkan Data Penyakit";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['penyakit'] = $this->DataModel->getData('penyakit')->result_array();
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/data-penyakit', $data);
@@ -72,6 +79,7 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "Data Gejala";
             $data['title_section'] = "Menampilkan Data Gejala";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['gejala'] = $this->DataModel->getData('gejala')->result_array();
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/data-gejala', $data);
@@ -138,6 +146,7 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "Data User";
             $data['title_section'] = "Menampilkan Data User";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['user'] = $this->DataModel->getData('user')->result_array();
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/data-user', $data);
@@ -187,6 +196,7 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "Data Artikel";
             $data['title_section'] = "Menampilkan Data Artikel";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['artikel'] = $this->DataModel->getData('artikel')->result_array();
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/data-artikel', $data);

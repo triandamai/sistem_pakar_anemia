@@ -11,7 +11,7 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="<?= base_url()?>/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Desi Putri</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, <?=$this->session->userdata['admin_data']['username']?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -41,8 +41,8 @@
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_data_penyakit">Data Penyakit</a></li>
                   <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_tambah_penyakit">Tambah Penyakit</a></li>
-                  <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_data_saran_penyakit">Data Saran Penyakit</a></li>
-                  <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_tambah_saran_penyakit">Tambah Saran Penyakit</a></li>
+                  <!-- <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_data_saran_penyakit">Data Saran Penyakit</a></li> -->
+                  <!-- <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_tambah_saran_penyakit">Tambah Saran Penyakit</a></li> -->
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -65,7 +65,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>User</span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?= base_url()?>index.php/admin_view/admin_data_user">Data User</a></li>
-                  <li><a href="<?= base_url()?>index.php/admin_view/admin_tambah_user">Tambah User</a></li>
+                  <!-- <li><a href="<?= base_url()?>index.php/admin_view/admin_tambah_user">Tambah User</a></li> -->
                   <li><a class="beep beep-sidebar" href="<?= base_url()?>index.php/admin_view/admin_history_user">History</a></li>
                 </ul>
               </li>
