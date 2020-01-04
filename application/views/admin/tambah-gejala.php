@@ -1,5 +1,6 @@
  <!-- Main Content -->
  <div class="main-content">
+                        <div class="breadcrumb-item active"><a href="<?= base_url()?>index.php/admin_view/">Home</a></div>
      <section class="section">
          <div class="row">
              <div class="col-lg-12 col-md-12 col-sm-12">
