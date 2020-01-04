@@ -1,6 +1,5 @@
  <!-- Main Content -->
  <div class="main-content">
-<<<<<<< Updated upstream
      <section class="section">
          <div class="row">
              <div class="col-lg-12 col-md-12 col-sm-12">
@@ -46,13 +45,13 @@
                                          <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
                                              <div class="col-sm-12 col-md-7">
-                                                 <textarea class="summernote-simple" name="deskripsipenyakit"></textarea>
+                                                 <textarea class=" form-control" rows="3" name="deskripsipenyakit"></textarea>
                                              </div>
                                          </div>
                                          <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Solusi</label>
                                              <div class="col-sm-12 col-md-7">
-                                                 <textarea class="summernote-simple" name="solusipenyakit" required></textarea>
+                                                 <textarea class=" form-control" rows="3" name="solusipenyakit" required></textarea>
                                              </div>
                                          </div>
                                          <div class="form-group row mb-4">
@@ -150,4 +149,4 @@
         </div>
     </section>
 </div>
->>>>>>> Stashed changes
+
