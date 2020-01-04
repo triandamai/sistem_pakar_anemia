@@ -48,7 +48,7 @@
                                             <input type="hidden" name="gejala" value="<?= $gejala->id_gejala ?>">
                                             <div class="col-lg-12" style="margin-top:50px">
                                                 <center>
-                                                    <input type="submit" name="kirim" value="Lanjutkan >>>" class="btn btn-primary">
+                                                    <input type="submit" name="kirim" value="Lanjutkan >>>" class="btn btn-lg btn-primary">
                                                 </center>
                                             </div>
                                         </div>

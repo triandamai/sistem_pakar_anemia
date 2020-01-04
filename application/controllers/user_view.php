@@ -61,6 +61,10 @@ class User_view extends CI_Controller
             $data['nama_section'] = "History";
             $data['title_section'] = "Daftar Diagnosa";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $riwayat = $this->DataModel->getJoin("detail_konsultasi","detail_konsultasi.id_konsultasi = konsultasi.id_konsultasi","inner");
+            $riwayat = $this->DataModel->getWhere("konsultasi.id_user",$this->session->userdata['user_data']['id']);
+            $riwayat = $this->DataModel->getData("konsultasi")->result_array();
+            $data['riwayat'] = $riwayat;
             $this->load->view('header', $data);
             $this->load->view('user/side-nav-top', $data);
             $this->load->view('user/history-diagnosa', $data);
@@ -79,7 +83,8 @@ class User_view extends CI_Controller
             $data['nama_section'] = "Penyakit";
             $data['title_section'] = "Data Penyakit";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
-           
+            $data['penyakit'] = $this->DataModel->getData("penyakit")->result_array();
+
             $this->load->view('header', $data);
             $this->load->view('user/side-nav-top', $data);
             $this->load->view('user/data-penyakit', $data);
