@@ -7,6 +7,7 @@ class User_view extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model("DataModel");
     }
 
     public function index()
@@ -63,8 +64,30 @@ class User_view extends CI_Controller
     }
 
     public function user_diagnosa_baru()
-	{
-		
+    {
+        if ($this->isLoggedIn()) {
+            $gejala = "";
+            $id = $this->input->get('kode');
+
+            if($id == null){
+                $gejala = $this->DataModel->getWhere("id_gejala","G1");
+            }else{
+                $gejala = $this->DataModel->getWhere("id_gejala",$id);
+            }
+            $gejala = $this->DataModel->getData("gejala")->row();
+            $data['title'] = "User | Diagnosa";
+            $data['nama_section'] = "Diagnosa";
+            $data['title_section'] = "Diagnosa Penyakit";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['gejala'] = $gejala;
+            $this->load->view('header', $data);
+            $this->load->view('user/side-nav-top', $data);
+            $this->load->view('user/diagnosa', $data);
+            $this->load->view('user/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        } else {
+            redirect('user_view/index');
+        }
     }
     public function user_profil()
 	{

@@ -140,4 +140,16 @@ class User_event extends CI_Controller
 		exit();
 	}
 
+	function user_diagnosa(){
+		if($this->input->post('kirim')){
+			$id_user = $this->session->userdata['user_data']['id'];
+			$jawab = $this->input->post('jawab');
+			$gejala = $this->input->post('gejala');
+
+			
+
+
+		}
+	}
+
 }
