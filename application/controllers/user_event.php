@@ -109,9 +109,10 @@ class User_event extends CI_Controller
 					if ($register) {
 						$this->session->set_flashdata(
 							'pesan',
-							'<div class="alert alert-danger mr-auto">Akun berhasil dibuat, anda dapat melanjutkan untuk login</div>'
+							'<div class="alert alert-success mr-auto">Akun berhasil dibuat, anda dapat melanjutkan untuk login</div>'
 						);
-						echo $this->session->flashdata('pesan');
+						redirect('user_view/user_login');
+						//echo $this->session->flashdata('pesan');
 					} else {
 						$this->session->set_flashdata(
 							'pesan',

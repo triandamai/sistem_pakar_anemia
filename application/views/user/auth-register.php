@@ -54,6 +54,9 @@
               </form>
             </div>
           </div>
+          <div class="mt-5 text-muted text-center">
+              Sudah punya akun? <a href="<?= base_url()?>index.php/user_view/user_login">Masuk Ke Akun Anda</a>
+            </div>
           <div class="simple-footer">
             Copyright &copy; Stisla 2018
           </div>

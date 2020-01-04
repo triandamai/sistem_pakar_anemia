@@ -57,6 +57,23 @@ class User_view extends CI_Controller
 		
     }
 
+    public function user_data_penyakit()
+	{
+		
+    }
+
+    public function user_diagnosa_baru()
+	{
+		
+    }
+    public function user_profil()
+	{
+		
+    }
+    public function user_ubah_password()
+	{
+		
+    }
     function isLoggedIn()
     {
         if ($this->session->userdata('user_data') != null) {

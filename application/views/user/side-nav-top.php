@@ -44,17 +44,17 @@
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Penyakit</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_data_penyakit">Data Penyakit</a></li>
-                  <li><a class="nav-link" href="<?= base_url()?>index.php/admin_view/admin_tambah_penyakit">Diagnosa Baru</a></li>
-                  <li><a class="beep beep-sidebar" href="<?= base_url()?>index.php/admin_view/admin_history_user">History DIagnosa Saya</a></li>
+                  <li><a class="nav-link" href="<?= base_url()?>index.php/user_view/user_data_penyakit">Data Penyakit</a></li>
+                  <li><a class="nav-link" href="<?= base_url()?>index.php/user_view/user_diagnosa_baru">Diagnosa Baru</a></li>
+                  <li><a class="beep beep-sidebar" href="<?= base_url()?>index.php/user_view/user_history">History Diagnosa Saya</a></li>
                 </ul>
               </li>
               <li class="menu-header">User</li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>User</span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="<?= base_url()?>index.php/admin_view/admin_data_user">Profil</a></li>
-                  <li><a href="<?= base_url()?>index.php/admin_view/admin_tambah_user">Ubah Password</a></li>
+                  <li><a href="<?= base_url()?>index.php/user_view/admin_data_user">Profil</a></li>
+                  <li><a href="<?= base_url()?>index.php/user_view/admin_tambah_user">Ubah Password</a></li>
                 </ul>
               </li>
              
