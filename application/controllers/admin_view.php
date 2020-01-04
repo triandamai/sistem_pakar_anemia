@@ -179,6 +179,10 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "History User";
             $data['title_section'] = "Daftar History Diagnosa";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $history = $this->DataModel->getJoin("user","konsultasi.id_user = user.id_user","inner");
+            $history = $this->DataModel->getData("konsultasi")->result_array();
+            $data['konsultasi'] = $history;
+
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/history-user', $data);
