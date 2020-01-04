@@ -55,12 +55,39 @@ class User_view extends CI_Controller
 	
 	public function user_history()
 	{
-		
+		if ($this->isLoggedIn()) {
+           
+            $data['title'] = "User | History";
+            $data['nama_section'] = "History";
+            $data['title_section'] = "Daftar Diagnosa";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $this->load->view('header', $data);
+            $this->load->view('user/side-nav-top', $data);
+            $this->load->view('user/history-diagnosa', $data);
+            $this->load->view('user/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        } else {
+            redirect('user_view/index');
+        }
     }
 
     public function user_data_penyakit()
 	{
-		
+        if ($this->isLoggedIn()) {
+           
+            $data['title'] = "User | Penyakit";
+            $data['nama_section'] = "Penyakit";
+            $data['title_section'] = "Data Penyakit";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+           
+            $this->load->view('header', $data);
+            $this->load->view('user/side-nav-top', $data);
+            $this->load->view('user/data-penyakit', $data);
+            $this->load->view('user/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        } else {
+            redirect('user_view/index');
+        }
     }
 
     public function user_diagnosa_baru()
