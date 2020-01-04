@@ -20,27 +20,34 @@
                                      <!-- <h4>Full Width</h4> -->
                                  </div>
                                  <div class="card-body p-0">
-                                     <div class="table-responsive">
-                                         <table class="table table-striped table-md">
-                                             <tr>
-                                                 <th>No</th>
-                                                 <th>Nama</th>
-                                                 <th>Deskripsi</th>
-                                                 <th>Action</th>
-                                             </tr>
-                                             <?php 
-                                             $no = 1;
-                                             foreach($gejala as $row){ ?>
-                                             <tr>
-                                                 <td><?=$no++?></td>
-                                                 <td><?=$row['nama_gejala']?></td>
-                                                 <td><?=$row['deskripsi_gejala']?></td>
-                                                 <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                             </tr>
-                                             <?php 
-                                            $no++;
-                                            } ?>
-                                         </table>
+                                     <div class="col-lg-12">
+                                         <?=$this->session->flashdata('pesan')?>
+                                         <div class="table-responsive">
+                                             <table class="table table-striped table-md">
+                                                 <tr>
+                                                     <th>No</th>
+                                                     <th>Kode</th>
+                                                     <th>Nama</th>
+                                                     <th>Deskripsi</th>
+                                                     <th>Action</th>
+                                                 </tr>
+                                                 <?php
+                                                    $no = 1;
+                                                    foreach ($gejala as $row) { ?>
+                                                     <tr>
+                                                         <td><?= $no ?></td>
+                                                         <td><?= $row['id_gejala'] ?></td>
+                                                         <td><?= $row['nama_gejala'] ?></td>
+                                                         <td><?= $row['deskripsi_gejala'] ?></td>
+                                                         <td>
+                                                             <a href="#" class="btn btn-success">Ubah</a> <a href="#" class="btn btn-danger">Hapus</a>
+                                                         </td>
+                                                     </tr>
+                                                 <?php
+                                                        $no++;
+                                                    } ?>
+                                             </table>
+                                         </div>
                                      </div>
                                  </div>
                                  <div class="card-footer text-right">
