@@ -121,6 +121,11 @@ class User_view extends CI_Controller
             redirect('user_view/index');
         }
     }
+
+    public function hasil_diagnosa(){
+        
+    }
+
     public function user_profil()
 	{
 		
