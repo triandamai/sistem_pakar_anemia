@@ -104,7 +104,9 @@ class Admin_event extends CI_Controller
 	public function admin_ubah_gejala(){
 		$id = $this->input->get('id');
 		if($id != null){
-
+			$nama_gejala = $this->input->post('');
+			$deskripsi_gejala = $this->input->post('');
+			
 		}
 	}
 

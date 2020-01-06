@@ -93,6 +93,8 @@ class Admin_view extends CI_Controller
             redirect('admin_view/admin_login');
         }
     }
+
+    
     public function admin_tambah_gejala()
     {
         if ($this->isLoggedIn()) {

@@ -19,5 +19,36 @@
 
   <!-- Page Specific JS File
   <script src="<?= base_url()?>/assets/js/page/index.js"></script> -->
+
+  <script type="text/javascript">
+    $(document).ready(()=>{
+        console.log("ready");
+        let btnGejala = $('#ubahGejala');
+        let btnPenyakit = $('#ubahPenyakit');
+        let btnHapusPenyakit = $('#hapusPenyakit');
+
+        btnGejala.click(()=>{
+          console.log('ubah gejala');
+          $('input[name="kodegejala"]').val(btnGejala.data('id'));
+          $('input[name="namagejala"]').val(btnGejala.data('nama'));
+          $('textarea[name="deskripsigejala"]').val(btnGejala.data('deskripsi'));
+
+        });
+
+        btnPenyakit.click(()=>{
+          console.log("ubah penyakit");
+          $('input[name="kodepenyakit"]').val(btnPenyakit.data('id'));
+          $('input[name="namapenyakit"]').val(btnPenyakit.data('nama'));
+          $('textarea[name="deskripsipenyakit"]').val(btnPenyakit.data('deskripsi'));
+          $('textarea[name="solusipenyakit"]').val(btnPenyakit.data('solusi'));
+        });
+
+        btnHapusPenyakit.click(()=>{
+          console.log("hapus penyakit");
+          $('#modalTitle').text("Apakah kamu yakin menghapus penyakit "+btnHapusPenyakit.data('nama')+" ?");
+
+        });
+    });
+ </script>
 </body>
 </html>

@@ -40,7 +40,15 @@
                                                          <td><?= $row['nama_gejala'] ?></td>
                                                          <td><?= $row['deskripsi_gejala'] ?></td>
                                                          <td>
-                                                             <a href="#" class="btn btn-success" id="modal-5">Ubah</a> <a href="#" class="btn btn-danger" data-confirm="Realy?|Do you want to continue?" data-confirm-yes="alert('Deleted :)');">Hapus</a>
+                                                             <a 
+                                                             id="ubahGejala" 
+                                                             href="#" 
+                                                             data-nama="<?= $row['nama_gejala']; ?>" 
+                                                             data-deskripsi="<?= $row['deskripsi_gejala']; ?>" 
+                                                             data-id="<?= $row['id_gejala']; ?>"
+                                                             class="btn btn-success" 
+                                                             data-toggle="modal"  
+                                                             data-target="#modalUbah">Ubah</a> <a href="#" class="btn btn-danger" data-confirm="Realy?|Do you want to continue?" data-confirm-yes="alert('Deleted :)');">Hapus</a>
                                                          </td>
                                                      </tr>
                                                  <?php
@@ -73,34 +81,54 @@
                  </div>
      </section>
  </div>
- <form class="modal-part" id="modal-login-part">
-          <p>This login form is taken from elements with <code>#modal-login-part</code> id.</p>
-          <div class="form-group">
-            <label>Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-envelope"></i>
-                </div>
-              </div>
-              <input type="text" class="form-control" placeholder="Email" name="email">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-lock"></i>
-                </div>
-              </div>
-              <input type="password" class="form-control" placeholder="Password" name="password">
-            </div>
-          </div>
-          <div class="form-group mb-0">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" name="remember" class="custom-control-input" id="remember-me">
-              <label class="custom-control-label" for="remember-me">Remember Me</label>
-            </div>
-          </div>
-        </form>
+
+ 
+ <div class="modal fade" tabindex="-1" role="dialog" id="modalUbah">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                                     <form action="<?= base_url() ?>index.php/admin_event/admin_ubah_gejala" method="POST" enctype="multipart/form-data">
+                                         <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode Gejala</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <input type="text" name="kodegejala" class="form-control" required>
+                                             </div>
+                                         </div>
+                                         <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Gejala</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <input type="text" name="namagejala" class="form-control" required>
+                                             </div>
+                                         </div>
+                                         <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <textarea id="textareagejala" class="form-control"  name="deskripsigejala" required></textarea>
+                                             </div>
+                                         </div>
+                                         <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <div class="custom-file">
+                                                     <input type="file" class="form-control" name="fotogejala">
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         
+                                     </form>
+                                 </div>
+                          
+      
+      <div class="modal-footer bg-whitesmoke br">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
