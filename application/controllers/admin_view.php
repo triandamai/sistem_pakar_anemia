@@ -45,7 +45,9 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "Data Penyakit";
             $data['title_section'] = "Menampilkan Data Penyakit";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
-            $data['penyakit'] = $this->DataModel->getData('penyakit')->result_array();
+            $penyakit = $this->DataModel->order_by("LENGTH(id_penyakit)","id_penyakit");
+            $penyakit = $this->DataModel->getData('penyakit')->result_array();
+            $data['penyakit'] = $penyakit;
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/data-penyakit', $data);
@@ -79,7 +81,9 @@ class Admin_view extends CI_Controller
             $data['nama_section'] = "Data Gejala";
             $data['title_section'] = "Menampilkan Data Gejala";
             $data['subtitle_section'] = "Example of some Bootstrap table components.";
-            $data['gejala'] = $this->DataModel->getData('gejala')->result_array();
+            $gejala = $this->DataModel->order_by("LENGTH(id_gejala)","id_gejala");
+            $gejala =  $this->DataModel->getData('gejala')->result_array();
+            $data['gejala'] = $gejala;
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/data-gejala', $data);
