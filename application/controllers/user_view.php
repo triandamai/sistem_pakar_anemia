@@ -123,7 +123,21 @@ class User_view extends CI_Controller
     }
 
     public function hasil_diagnosa(){
-        
+        if($this->isLoggedIn()){
+            if($this->session->userdata['diagnosa_data'] != null){
+                $data['title'] = "User | Diagnosa";
+                $data['nama_section'] = "Hasil Diagnosa";
+                $data['title_section'] = "Diagnosa Penyakit";
+                $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+                $this->load->view('header', $data);
+                $this->load->view('user/side-nav-top', $data);
+                $this->load->view('user/hasil_diagnosa');
+                $this->load->view('user/side-nav-bottom', $data);
+                $this->load->view('footer', $data);
+            }
+        }else{
+            redirect('user_view/index');
+        }
     }
 
     public function user_profil()

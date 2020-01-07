@@ -150,17 +150,23 @@ class User_event extends CI_Controller
 			$tanggal = date("Y-m-d H:i:s");
 
 			if ($gejala == "G1") {
+				$cek = $this->session->userdata('diagnosa_data');
+				if ($cek) {
+					$sess = array(
+						"gejala" => []
+					);
+					$this->session->unset_userdata('diagnosa_data', $sess);
+				}
+
+				$data = array(
+					"id" => $id_user,
+					"tgl" => $tanggal,
+				);
+
+				$this->session->set_userdata('diagnosa_data', $data);
+
 				if ($jawab == "1") {
-					$cek = $this->session->userdata('diagnosa_data');
-					if ($cek) {
-						$sess = array(
-							"gejala" => []
-						);
-						$this->session->unset_userdata('diagnosa_data', $sess);
-					}
 					$data = array(
-						"id" => $id_user,
-						"tgl" => $tanggal,
 						"gejala" => array($gejala)
 					);
 
@@ -198,7 +204,8 @@ class User_event extends CI_Controller
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P1";
 					//query disini
-					die(json_encode($this->session->userdata['diagnosa_data']));
+					redirect('user_view/hasil_diagnosa');
+					// die(json_encode($this->session->userdata['diagnosa_data']));
 					// echo "anda menderita penyakit 1";
 					// echo "dengan detail sbb : "
 				} else {
@@ -208,8 +215,7 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					redirect('user_view/user_diagnosa_baru?kode=G7');
-				}else {
-					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
+				} else {
 					redirect('user_view/user_diagnosa_baru?kode=G14');
 				}
 			} elseif ($gejala == "G7") {
@@ -277,8 +283,9 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P4";
-					die(json_encode($this->session->userdata['diagnosa_data']));
-				}else {
+					// die(json_encode($this->session->userdata['diagnosa_data']));
+					redirect('user_view/hasil_diagnosa');
+				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
 			} else if ($gejala == "G16") {
@@ -314,27 +321,33 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P6";
-					die(json_encode($this->session->userdata['diagnosa_data']));
-				}else {
+					// die(json_encode($this->session->userdata['diagnosa_data']));
+					redirect('user_view/hasil_diagnosa');
+				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
-			} elseif ($gejala == "G21") {
-				if($jawab == "1"){
-
-				}else{
-
+			} else if ($gejala == "G21") {
+				if ($jawab == "1") {
+					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
+					redirect('user_view/user_diagnosa_baru?kode=G22');
+				} else {
+					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
-			} elseif($gejala == "G22"){
-				if($jawab == "1"){
-
-				}else {
-					
+			} else if ($gejala == "G22") {
+				if ($jawab == "1") {
+					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
+					redirect('user_view/user_diagnosa_baru?kode=G23');
+				} else {
+					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
-			} elseif($gejala == "G23"){
-				if($jawab == "1"){
-
-				}else {
-					
+			} else if ($gejala == "G23") {
+				if ($jawab == "1") {
+					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
+					$this->session->userdata['diagnosa_data']['penyakit'] = "P7";
+					// die(json_encode($this->session->userdata['diagnosa_data']));
+					redirect('user_view/hasil_diagnosa');
+				} else {
+					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
 			}
 		}
