@@ -26,6 +26,8 @@
         let btnGejala = $('#ubahGejala');
         let btnPenyakit = $('#ubahPenyakit');
         let btnHapusPenyakit = $('#hapusPenyakit');
+        let btnHapusGejala = $('#hapusGejala');
+
 
         btnGejala.click(()=>{
           console.log('ubah gejala');
@@ -47,7 +49,16 @@
 
         btnHapusPenyakit.click(()=>{
           console.log("hapus penyakit");
+          let id = '<?= base_url() ?>index.php/admin_event/admin_hapus_penyakit?id='+ btnHapusPenyakit.data('id');
           $('#modalTitle').text("Apakah kamu yakin menghapus penyakit "+btnHapusPenyakit.data('nama')+" ?");
+          $("#formHapus").attr('action',id);
+
+        });
+        btnHapusGejala.click(()=>{
+          console.log("hapus penyakit");
+          let id = '<?= base_url() ?>index.php/admin_event/admin_hapus_gejala?id='+ btnHapusGejala.data('id');
+          $('#modalTitle').text("Apakah kamu yakin menghapus Gejala "+btnHapusGejala.data('nama')+" ?");
+          $("#formHapus").attr('action',id);
 
         });
     });

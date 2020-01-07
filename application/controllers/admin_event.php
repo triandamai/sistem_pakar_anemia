@@ -140,9 +140,31 @@ class Admin_event extends CI_Controller
 
 	public function admin_hapus_gejala(){
 		$id = $this->input->get('id');
+		
 		if($id != null){
-
+			
+			$hapus = $this->DataModel->delete('id_gejala',$id,'gejala');
+			if($hapus){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data berhasil dihapus</div>'
+				);
+				redirect('admin_view/admin_data_gejala');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Data gagal dihapus</div>'
+				);
+				redirect('admin_view/admin_data_gejala');
+			}
+		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">Data gagal dihapus!</div>'
+			);
+			redirect('admin_view/admin_data_gejala');
 		}
+		
 	}
 
 	public function admin_tambah_penyakit(){
@@ -217,9 +239,31 @@ class Admin_event extends CI_Controller
 
 	public function admin_hapus_penyakit(){
 		$id = $this->input->get('id');
+		
 		if($id != null){
-
+			
+			$hapus = $this->DataModel->delete('id_penyakit',$id,'penyakit');
+			if($hapus){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data berhasil dihapus</div>'
+				);
+				redirect('admin_view/admin_data_penyakit');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Data gagal dihapus</div>'
+				);
+				redirect('admin_view/admin_data_penyakit');
+			}
+		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">Data gagal dihapus!</div>'
+			);
+			redirect('admin_view/admin_data_penyakit');
 		}
+		
 	}
 
 }

@@ -157,12 +157,13 @@
         </button>
       </div>
         <div class="modal-body">
-      
+                                                    
         </div>
       <div class="modal-footer bg-whitesmoke br">
-      <form>
+      <form id="formHapus" action="#" method="post">
+     
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-danger">Hapus</button>
+        <button type="submit" class="btn btn-danger">Hapus</button>
       </form>
       </div>
     </div>

@@ -48,7 +48,15 @@
                                                              data-id="<?= $row['id_gejala']; ?>"
                                                              class="btn btn-success" 
                                                              data-toggle="modal"  
-                                                             data-target="#modalUbah">Ubah</a> <a href="#" class="btn btn-danger" data-confirm="Realy?|Do you want to continue?" data-confirm-yes="alert('Deleted :)');">Hapus</a>
+                                                             data-target="#modalUbah">Ubah</a> 
+                                                             <a 
+                                                             href="#" 
+                                                             id="hapusGejala"
+                                                             data-id="<?= $row['id_gejala']; ?>"
+                                                             data-nama="<?= $row['nama_gejala']; ?>" 
+                                                             class="btn btn-danger"
+                                                             data-toggle="modal"  
+                                                             data-target="#modalHapus">Hapus</a>
                                                          </td>
                                                      </tr>
                                                  <?php
@@ -132,6 +140,29 @@
         <button type="submit" name="kirim" value="Simpan" class="btn btn-primary">Save changes</button>
       </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalHapus">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modalTitle" class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+                                                    
+        </div>
+      <div class="modal-footer bg-whitesmoke br">
+      <form id="formHapus" action="#" method="post">
+     
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-danger">Hapus</button>
+      </form>
+      </div>
     </div>
   </div>
 </div>
