@@ -100,12 +100,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="<?= base_url() ?>index.php/admin_event/admin_ubah_penyakit" method="POST" enctype="multipart/form-data">
       <div class="modal-body">
-      <form action="<?= base_url() ?>index.php/admin_event/admin_tambah_penyakit" method="POST" enctype="multipart/form-data">
+     
                                          <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode Penyakit</label>
                                              <div class="col-sm-12 col-md-7">
-                                                 <input type="text" name="kodepenyakit" class="form-control" required>
+                                                    <input type="hidden" name="id">
+                                                 <input type="text" name="kodepenyakit" class="form-control" required disabled>
                                              </div>
                                          </div>
                                          <div class="form-group row mb-4">
@@ -134,21 +136,17 @@
                                                  </div>
                                              </div>
                                          </div>
-                                         <div class="form-group row mb-4">
-                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
-                                             <div class="col-sm-12 col-md-7">
-                                                 <input type="submit" name="kirim" value="Simpan" class="btn btn-primary">
-                                             </div>
-                                         </div>
-                                     </form>
+                                    
                                  </div>
       <div class="modal-footer bg-whitesmoke br">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" name="kirim" value="Simpan" class="btn btn-primary">Simpan Perubahan</button>
       </div>
     </div>
+    </form>
   </div>
 </div>
+
 <div class="modal fade" tabindex="-1" role="dialog" id="modalHapus">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

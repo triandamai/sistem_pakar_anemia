@@ -92,12 +92,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="<?= base_url() ?>index.php/admin_event/admin_ubah_gejala" method="POST" enctype="multipart/form-data">
       <div class="modal-body">
-                                     <form action="<?= base_url() ?>index.php/admin_event/admin_ubah_gejala" method="POST" enctype="multipart/form-data">
+                                    
                                          <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode Gejala</label>
                                              <div class="col-sm-12 col-md-7">
-                                                 <input type="text" name="kodegejala" class="form-control" required>
+                                                    <input name="id" type="hidden">
+                                                 <input type="text" name="kodegejala" class="form-control" required disabled>
                                              </div>
                                          </div>
                                          <div class="form-group row mb-4">
@@ -121,14 +123,15 @@
                                              </div>
                                          </div>
                                          
-                                     </form>
+                                     
                                  </div>
                           
       
       <div class="modal-footer bg-whitesmoke br">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="kirim" value="Simpan" class="btn btn-primary">Save changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

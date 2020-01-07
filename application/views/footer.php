@@ -30,6 +30,7 @@
         btnGejala.click(()=>{
           console.log('ubah gejala');
           $('input[name="kodegejala"]').val(btnGejala.data('id'));
+          $('input[name="id"]').val(btnGejala.data('id'));
           $('input[name="namagejala"]').val(btnGejala.data('nama'));
           $('textarea[name="deskripsigejala"]').val(btnGejala.data('deskripsi'));
 
@@ -38,6 +39,7 @@
         btnPenyakit.click(()=>{
           console.log("ubah penyakit");
           $('input[name="kodepenyakit"]').val(btnPenyakit.data('id'));
+          $('input[name="id"]').val(btnPenyakit.data('id'));
           $('input[name="namapenyakit"]').val(btnPenyakit.data('nama'));
           $('textarea[name="deskripsipenyakit"]').val(btnPenyakit.data('deskripsi'));
           $('textarea[name="solusipenyakit"]').val(btnPenyakit.data('solusi'));

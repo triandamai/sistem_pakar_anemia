@@ -102,11 +102,39 @@ class Admin_event extends CI_Controller
 	}
 
 	public function admin_ubah_gejala(){
-		$id = $this->input->get('id');
-		if($id != null){
-			$nama_gejala = $this->input->post('');
-			$deskripsi_gejala = $this->input->post('');
-			
+		if($this->input->post('kirim')){
+			$kode = $this->input->post('id');
+			$nama = $this->input->post('namagejala');
+			$deskripsi = $this->input->post('deskripsigejala');
+
+			$data = array(
+			//	 "id_gejala" => $kode,
+				"nama_gejala" => $nama,
+				"deskripsi_gejala" => $deskripsi,
+				"updated_at" => date("Y-m-d H:i:s")
+			);
+			//echo json_encode($data);
+			//die();
+			$gejala = $this->DataModel->update("id_gejala",$kode,"gejala",$data);
+			if($gejala){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data Berhasil diubah</div>'
+				);
+				redirect('admin_view/admin_data_gejala');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Data gagal diubah</div>'
+				);
+				redirect('admin_view/admin_data_gejala');
+			}
+		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">Data gagal diubah!</div>'
+			);
+			redirect('admin_view/admin_data_gejala');
 		}
 	}
 
@@ -148,9 +176,42 @@ class Admin_event extends CI_Controller
 	}
 
 	public function admin_ubah_penyakit(){
-		$id = $this->input->get('id');
-		if($id != null){
+		
+		if($this->input->post('kirim')){
+			$kode = $this->input->post('id');
+			$nama = $this->input->post('namapenyakit');
+			$deskripsi = $this->input->post('deskripsipenyakit');
+			$solusi = $this->input->post('solusipenyakit');
 
+			$data = array(
+				"nama_penyakit" => $nama,
+				"deskripsi_penyakit" => $deskripsi,
+				"solusi_penyakit" => $solusi,
+				"updated_at" => date("Y-m-d H:i:s")
+			);
+			// echo json_encode($data);
+			// die();
+			$penyakit = $this->DataModel->update("id_penyakit",$kode,"penyakit",$data);
+
+			if($penyakit){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data berhasil diubah</div>'
+				);
+				redirect('admin_view/admin_data_penyakit');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Data gagal diubah</div>'
+				);
+				redirect('admin_view/admin_data_penyakit');
+			}
+		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">Data gagal diubah(method salah)</div>'
+			);
+			redirect('admin_view/admin_data_penyakit');
 		}
 	}
 
