@@ -31,7 +31,9 @@
                                              </tr>
                                              <?php 
                                              $no = 1;
+                                            //  echo json_encode($user);
                                              foreach($user as $row){ ?>
+                                             
                                              <tr>
                                                  <td><?=$no?></td>
                                                  <td><?=$row['username']?></td>
@@ -40,9 +42,15 @@
                                                      <div class="badge badge-success">Active</div>
                                                  </td>
                                                  <td><a href="#" 
+                                                id="detailUser"
+                                                data-id="<?=$row['id_user']?>"
+                                                data-username="<?=$row['username']?>"
+                                                data-email="<?=$row['email']?>"
+                                                data-created="<?=$row['created_at']?>"
+                                                data-updated="<?=$row['updated_at']?>"
                                                  class="btn btn-secondary" 
                                                  data-toggle="modal"  
-                                                  data-target="#modalDetail">Detail</a></td>
+                                                 data-target="#modalDetail">Detail</a></td>
                                              </tr>
                                              <?php 
                                             $no++;
@@ -78,21 +86,23 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Detail User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-     
-               
-                             
-                           
-                                    
-    </div>
+        <div class="modal-body">
+        <b>Username</b>
+        <p id="username" class="mb-2"></p>  
+        <b>Email</b>
+        <p id="email" class="mb-2"></p>  
+        <b>Mendaftar Pada</b>
+        <p id="created_at" class="mb-2"></p>               
+        <b>Terakhir Diubah</b>
+        <p id="updated_at" class="mb-2"></p>  
+        </div>
       <div class="modal-footer bg-whitesmoke br">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" name="kirim" value="Simpan" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>

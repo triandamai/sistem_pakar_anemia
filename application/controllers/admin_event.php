@@ -139,7 +139,7 @@ class Admin_event extends CI_Controller
 	}
 
 	public function admin_hapus_gejala(){
-		$id = $this->input->get('id');
+		$id = $this->input->post('kodegejala');
 		
 		if($id != null){
 			
@@ -238,7 +238,7 @@ class Admin_event extends CI_Controller
 	}
 
 	public function admin_hapus_penyakit(){
-		$id = $this->input->get('id');
+		$id = $this->input->post('kodepenyakit');
 		
 		if($id != null){
 			

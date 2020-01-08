@@ -19,18 +19,24 @@
 
   <!-- Page Specific JS File
   <script src="<?= base_url()?>/assets/js/page/index.js"></script> -->
+  <script src="<?= base_url()?>/assets/js/custom-console.js"></script>
 
   <script type="text/javascript">
     $(document).ready(()=>{
-        console.log("ready");
+
+        const custom = new CustomLogging;
+        custom.setBodyStyle({ color: 'red' });
+        custom.log('Warning !! Ini adalah mode developer mohon bijak dalam menggunakan');
+        
         let btnGejala = $('#ubahGejala');
         let btnPenyakit = $('#ubahPenyakit');
         let btnHapusPenyakit = $('#hapusPenyakit');
         let btnHapusGejala = $('#hapusGejala');
+        let btnDetailUser = $('#detailUser');
 
 
         btnGejala.click(()=>{
-          console.log('ubah gejala');
+         // console.log('ubah gejala');
           $('input[name="kodegejala"]').val(btnGejala.data('id'));
           $('input[name="id"]').val(btnGejala.data('id'));
           $('input[name="namagejala"]').val(btnGejala.data('nama'));
@@ -39,7 +45,7 @@
         });
 
         btnPenyakit.click(()=>{
-          console.log("ubah penyakit");
+         // console.log("ubah penyakit");
           $('input[name="kodepenyakit"]').val(btnPenyakit.data('id'));
           $('input[name="id"]').val(btnPenyakit.data('id'));
           $('input[name="namapenyakit"]').val(btnPenyakit.data('nama'));
@@ -48,18 +54,24 @@
         });
 
         btnHapusPenyakit.click(()=>{
-          console.log("hapus penyakit");
-          let id = '<?= base_url() ?>index.php/admin_event/admin_hapus_penyakit?id='+ btnHapusPenyakit.data('id');
+         // console.log("hapus penyakit");
           $('#modalTitle').text("Apakah kamu yakin menghapus penyakit "+btnHapusPenyakit.data('nama')+" ?");
-          $("#formHapus").attr('action',id);
+          $('input[name="kodepenyakit"]').val(btnHapusPenyakit.data('id'));
+          
 
         });
         btnHapusGejala.click(()=>{
-          console.log("hapus penyakit");
-          let id = '<?= base_url() ?>index.php/admin_event/admin_hapus_gejala?id='+ btnHapusGejala.data('id');
+        //  console.log("hapus Gejala");
           $('#modalTitle').text("Apakah kamu yakin menghapus Gejala "+btnHapusGejala.data('nama')+" ?");
-          $("#formHapus").attr('action',id);
+          $('input[name="kodegejala"]').val(btnHapusGejala.data('id'));
+        });
 
+        btnDetailUser.click(()=>{
+        //  console.log("detail user");
+          $('#username').text(btnDetailUser.data('username'));
+          $('#email').text(btnDetailUser.data('email'));
+          $('#created_at').text(btnDetailUser.data('created'));
+          $('#updated_at').text(btnDetailUser.data('updated'));
         });
     });
  </script>

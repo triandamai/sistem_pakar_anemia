@@ -160,9 +160,9 @@
                                                     
         </div>
       <div class="modal-footer bg-whitesmoke br">
-      <form id="formHapus" action="#" method="post">
-     
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+      <form id="formHapus" action="<?= base_url() ?>index.php/admin_event/admin_hapus_penyakit" method="post">
+        <input type="hidden" name="kodepenyakit"/>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
         <button type="submit" class="btn btn-danger">Hapus</button>
       </form>
       </div>
