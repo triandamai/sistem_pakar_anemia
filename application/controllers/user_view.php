@@ -13,7 +13,7 @@ class User_view extends CI_Controller
     public function index()
     {
         if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Home";
+            $data['title'] = "User | Home";
             $data['nama_section'] = "Home";
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
@@ -32,7 +32,7 @@ class User_view extends CI_Controller
         if ($this->isLoggedIn()) {
             redirect('user_view/index');
         }else{
-            $data['title'] = "Admin | Login";
+            $data['title'] = "User | Login";
             $data['nama_section'] = "Login";
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
@@ -44,7 +44,7 @@ class User_view extends CI_Controller
 
     public function user_register()
     {
-        $data['title'] = "Admin | Daftar";
+        $data['title'] = "User | Daftar";
         $data['nama_section'] = "Membuat Akun";
         $data['title_section'] = "Selamat Datang!";
         $data['subtitle_section'] = "This page is just an example for you to create your own page.";
@@ -150,7 +150,7 @@ class User_view extends CI_Controller
     public function user_profil()
 	{
 		if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Profil";
+            $data['title'] = "User | Profil";
             $data['nama_section'] = "Profil";
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
@@ -167,7 +167,7 @@ class User_view extends CI_Controller
 	{
 		if ($this->isLoggedIn()) {
             
-            $data['title'] = "Admin | Ubah Password";
+            $data['title'] = "User | Ubah Password";
             $data['nama_section'] = "Ubah Password";
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
