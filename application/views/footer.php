@@ -26,7 +26,7 @@
 
         const custom = new CustomLogging;
         custom.setBodyStyle({ color: 'red' });
-        custom.log('Warning !! Ini adalah mode developer mohon bijak dalam menggunakan');
+        custom.log('Warning !! Ini adalah mode developer bijaklah dalam menggunakan tool ini');
         
         let btnGejala = $('#ubahGejala');
         let btnPenyakit = $('#ubahPenyakit');

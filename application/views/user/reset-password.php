@@ -8,19 +8,26 @@
             </div> -->
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Reset Password</h4></div>
+              <div class="card-header"><h4>Ubah Password</h4></div>
 
               <div class="card-body">
-                <p class="text-muted">We will send a link to reset your password</p>
-                <form action="<?= base_url()?>inde.php/user_event/user_ubah_password" method="POST">
+              <?=$this->session->flashdata('reset-error')?>
+                <!-- <p class="text-muted">We will send a link to reset your password</p> -->
+                <form action="<?= base_url()?>index.php/user_event/user_ubah_password" method="POST">
                   <!-- <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                   </div> -->
-
+                  <!-- <div class="form-group">
+                    <label for="password">Password Lama</label>
+                    <input id="password" name="password_lama" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" tabindex="2" required>
+                    <div id="pwindicator" class="pwindicator">
+                      <div class="bar"></div>
+                      <div class="label"></div>
+                    </div> -->
                   <div class="form-group">
                     <label for="password">Password Baru</label>
-                    <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" tabindex="2" required>
+                    <input id="password" name="password_baru" type="password" class="form-control pwstrength" data-indicator="pwindicator" tabindex="2" required>
                     <div id="pwindicator" class="pwindicator">
                       <div class="bar"></div>
                       <div class="label"></div>
@@ -29,16 +36,19 @@
 
                   <div class="form-group">
                     <label for="password-confirm">Konfirmasi Password</label>
-                    <input id="password-confirm" type="password" class="form-control" name="confirm-password" tabindex="2" required>
+                    <input id="password-confirm" name="konfirmasi_pass" type="password" class="form-control"  tabindex="2" required>
                   </div>
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Reset Password
+                      Simpan Perubahan
                     </button>
                   </div>
                 </form>
               </div>
+            </div>
+            <div class="mt-5 text-muted text-center">
+              Batal? <a href="<?= base_url()?>index.php/user_view/">Kembali Ke Beranda</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; Stisla 2018

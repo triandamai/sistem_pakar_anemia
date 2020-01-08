@@ -9,6 +9,7 @@ class User_event extends CI_Controller
 		parent::__construct();
 		$this->load->model('DataModel');
 		$this->load->library('bcrypt');
+		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -78,6 +79,14 @@ class User_event extends CI_Controller
 			$password = $this->input->post('password');
 			$cpassword = $this->input->post('password-confirm');
 
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+			if($this->form_validation->run() == FALSE){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Password minimal 8 Karakter.</div>'
+				);
+				redirect('user_view/user_register');
+			}else{
 			$cek = $this->DataModel->select(array("username", "email"));
 			$cek = $this->DataModel->get_whereArr("user", "username = '" . $username . "' or email = '" . $email . "'")->row();
 			if ($cek != null) {
@@ -128,6 +137,9 @@ class User_event extends CI_Controller
 					redirect('user_view/user_register');
 				}
 			}
+			}
+
+			
 		}
 	}
 
@@ -350,6 +362,59 @@ class User_event extends CI_Controller
 					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
 			}
+		}
+	}
+
+	public function user_ubah_password(){
+		if(isset($this->session->userdata['user_data'])){
+		
+			$new_pass = $this->input->post('password_baru');
+			$cek_pass = $this->input->post('konfirmasi_pass');
+			$this->form_validation->set_rules('password_baru', 'Password', 'trim|required|min_length[8]');
+			if($this->form_validation->run() == FALSE){
+				$this->session->set_flashdata(
+					'reset-error',
+					'<div class="alert alert-danger mr-auto">Password minimal 8 Karakter.</div>'
+				);
+				redirect('user_view/user_ubah_password');
+			}else{
+				if($cek_pass === $new_pass){
+				
+					$dataupdate = array(
+						'password' => $this->bcrypt->hash_password($new_pass),
+						'updated_at' => date("Y-m-d H:i:s")
+					);
+			
+					$update = $this->DataModel->update('id_user',$this->session->userdata['user_data']['id'],'user',$dataupdate);
+					if($update){
+						$this->session->set_flashdata(
+							'login-error',
+							'<div class="alert alert-success mr-auto">Ubah Password Berhasil!</div>'
+						);
+						$this->user_logout();
+					}else{
+						$this->session->set_flashdata(
+							'reset-error',
+							'<div class="alert alert-danger mr-auto">Ubah Password Gagal!</div>'
+						);
+						redirect("user_view/user_ubah_password");
+					}
+				}else{
+					$this->session->set_flashdata(
+						'reset-error',
+						'<div class="alert alert-danger mr-auto">Konfirmasi password tidak sesuai</div>'
+					);
+					redirect("user_view/user_ubah_password");
+				}
+			}
+
+			
+		}else{
+			$this->session->set_flashdata(
+				'login-error',
+				'<div class="alert alert-danger mr-auto">Tidak bisa merubah password,Kamu sudah logout</div>'
+			);
+			redirect('user_view/user_login');
 		}
 	}
 }
