@@ -129,6 +129,13 @@ class User_view extends CI_Controller
                 $data['nama_section'] = "Hasil Diagnosa";
                 $data['title_section'] = "Diagnosa Penyakit";
                 $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+                $gejala = $this->DataModel->getJoin('detail_konsultasi','konsultasi.id_konsultasi = detail_konsultasi.id_konsultasi','inner');
+                $gejala = $this->DataModel->getWhere('id_user',$this->session->userdata['user_data']['id']);
+                $gejala = $this->DataModel->getData('konsultasi')->result_array();
+                $data['gejala'] = $gejala;
+                // $penyakit = $this->DataModel->
+                // $data['gejala'] = $this->session->userdata['diagnosa_data']['gejala'];
+                // die(json_encode($this->session->userdata['diagnosa_data']));
                 $this->load->view('header', $data);
                 $this->load->view('user/side-nav-top', $data);
                 $this->load->view('user/hasil_diagnosa');

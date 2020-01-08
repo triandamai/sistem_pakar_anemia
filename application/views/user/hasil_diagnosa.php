@@ -22,9 +22,9 @@
                                 <div class="col-md-6">
                                     <address>
                                         <strong>Data Konsultan: </strong><br><br>
-                                        Username : <br>
-                                        Email :<br>
-                                        Tanggal Konsultasi : <br>
+                                        Username : <?=$this->session->userdata['user_data']['username']?><br>
+                                        Email : <?=$this->session->userdata['user_data']['email']?><br>
+                                        Waktu Konsultasi : <?=$this->session->userdata['diagnosa_data']['tgl']?><br>
 
                                     </address>
                                 </div>
@@ -40,33 +40,21 @@
                                 <table class="table table-striped table-hover table-md">
                                     <tbody>
                                         <tr>
-                                            <th data-width="40" style="width: 40px;">#</th>
-                                            <th>Item</th>
-                                            <th class="text-center">Price</th>
-                                            <th class="text-center">Quantity</th>
-                                            <th class="text-right">Totals</th>
+                                            <th data-width="40" style="width: 40px;">No</th>
+                                            <th class="text-center">Kode Gejala</th>
+                                            <th>Nama gejala</th>
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mouse Wireless</td>
-                                            <td class="text-center">$10.99</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-right">$10.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Keyboard Wireless</td>
-                                            <td class="text-center">$20.00</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-right">$60.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Headphone Blitz TDR-3000</td>
-                                            <td class="text-center">$600.00</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-right">$600.00</td>
-                                        </tr>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($gejala as $row) { ?>
+                                            <tr>
+                                                <td data-width="40" style="width: 40px;"><?= $no ?></td>
+                                                <td class="text-center"><?= $row['id_gejala'] ?></td>
+                                                <td><?= $row['nama_gejala'] ?></td>
+                                            </tr>
+                                        <?php
+                                            $no++;
+                                        } ?>
                                     </tbody>
                                 </table>
                             </div>

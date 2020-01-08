@@ -149,6 +149,13 @@ class User_event extends CI_Controller
 			$gejala = $this->input->post('gejala');
 			$tanggal = date("Y-m-d H:i:s");
 
+			$data = array(
+				"id" => $id_user,
+				"tgl" => $tanggal,
+			);
+
+			$this->session->set_userdata('diagnosa_data', $data);
+
 			if ($gejala == "G1") {
 				$cek = $this->session->userdata('diagnosa_data');
 				if ($cek) {
@@ -157,13 +164,6 @@ class User_event extends CI_Controller
 					);
 					$this->session->unset_userdata('diagnosa_data', $sess);
 				}
-
-				$data = array(
-					"id" => $id_user,
-					"tgl" => $tanggal,
-				);
-
-				$this->session->set_userdata('diagnosa_data', $data);
 
 				if ($jawab == "1") {
 					$data = array(
