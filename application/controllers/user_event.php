@@ -153,6 +153,10 @@ class User_event extends CI_Controller
 		exit();
 	}
 
+	private function idKonsultasi(){
+		$cek = $this->DataModel->getData('konsultasi')->row();
+	}
+
 	function user_diagnosa()
 	{
 		if ($this->input->post('kirim')) {

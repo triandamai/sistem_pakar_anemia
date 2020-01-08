@@ -18,44 +18,60 @@
   <script src="<?= base_url()?>/assets/js/custom.js"></script>
 
   <!-- Page Specific JS File
-  <script src="<?= base_url()?>/assets/js/page/index.js"></script> -->
-  <script src="<?= base_url()?>/assets/js/custom-console.js"></script>
-  <script src="<?= base_url()?>assets/ckeditor/ckeditor.js"></script>
+  <script src="<?= base_url() ?>/assets/js/page/index.js"></script> -->
+  <!-- <script src="<?= base_url() ?>/assets/js/custom-console.js"></script> -->
 
   <script type="text/javascript">
-   CKEDITOR.replace('ckeditor' ,{
-        filebrowserImageBrowseUrl : 'kcfinder-2.3'
+    $(document).on("click", "#ubahGejala", function() {
+      // var id = $(this).data('id');
+      // console.log(id);
+      $('input[name="kodegejala"]').val($(this).data('id'));
+      $('input[name="id"]').val($(this).data('id'));
+      $('input[name="namagejala"]').val($(this).data('nama'));
+      $('textarea[name="deskripsigejala"]').val($(this).data('deskripsi'));
+      // $('input[name="id"]').val(id);
     });
-    $(document).ready(()=>{
 
-        const custom = new CustomLogging;
-        custom.setBodyStyle({ color: 'red' });
-        custom.log('Warning !! Ini adalah mode developer bijaklah dalam menggunakan tool ini');
-        
-        let btnGejala = $('#ubahGejala');
-        let btnPenyakit = $('#ubahPenyakit');
-        let btnHapusPenyakit = $('#hapusPenyakit');
-        let btnHapusGejala = $('#hapusGejala');
-        let btnDetailUser = $('#detailUser');
+    $(document).on("click", "#ubahPenyakit", function() {
+      $('input[name="kodepenyakit"]').val($(this).data('id'));
+      $('input[name="id"]').val($(this).data('id'));
+      $('input[name="namapenyakit"]').val($(this).data('nama'));
+      $('textarea[name="deskripsipenyakit"]').val($(this).data('deskripsi'));
+      $('textarea[name="solusipenyakit"]').val($(this).data('solusi'));
+    });
+
+    $(document).ready(() => {
+
+      // const custom = new CustomLogging;
+      // custom.setBodyStyle({ color: 'red' });
+      // custom.log('Warning !! Ini adalah mode developer bijaklah dalam menggunakan tool ini');
+
+      var btnGejala = $('#ubahGejala');
+      let btnPenyakit = $('#ubahPenyakit');
+      let btnHapusPenyakit = $('#hapusPenyakit');
+      let btnHapusGejala = $('#hapusGejala');
+      let btnDetailUser = $('#detailUser');
 
 
-        btnGejala.click(()=>{
-         // console.log('ubah gejala');
-          $('input[name="kodegejala"]').val(btnGejala.data('id'));
-          $('input[name="id"]').val(btnGejala.data('id'));
-          $('input[name="namagejala"]').val(btnGejala.data('nama'));
-          $('textarea[name="deskripsigejala"]').val(btnGejala.data('deskripsi'));
+      // btnGejala.click(() => {
+      // console.log(btnGejala.data('id'));
+      // console.log(btnGejala.data('id'));
 
-        });
+      // $('input[name="kodegejala"]').val(btnGejala.data('id'));
+      // $('input[name="id"]').val(btnGejala.data('id'));
+      // $('input[name="namagejala"]').val(btnGejala.data('nama'));
+      // $('textarea[name="deskripsigejala"]').val(btnGejala.data('deskripsi'));
 
-        btnPenyakit.click(()=>{
-         // console.log("ubah penyakit");
-          $('input[name="kodepenyakit"]').val(btnPenyakit.data('id'));
-          $('input[name="id"]').val(btnPenyakit.data('id'));
-          $('input[name="namapenyakit"]').val(btnPenyakit.data('nama'));
-          $('textarea[name="deskripsipenyakit"]').val(btnPenyakit.data('deskripsi'));
-          $('textarea[name="solusipenyakit"]').val(btnPenyakit.data('solusi'));
-        });
+      // });
+
+      btnPenyakit.click(() => {
+        console.log($(this).data('id'));
+        // $('input[name="kodepenyakit"]').val(btnPenyakit.data('id'));
+        // $('input[name="id"]').val(btnPenyakit.data('id'));
+        // $('input[name="namapenyakit"]').val(btnPenyakit.data('nama'));
+        // $('textarea[name="deskripsipenyakit"]').val(btnPenyakit.data('deskripsi'));
+        // $('textarea[name="solusipenyakit"]').val(btnPenyakit.data('solusi'));
+      });
 
         btnHapusPenyakit.click(()=>{
          // console.log("hapus penyakit");
