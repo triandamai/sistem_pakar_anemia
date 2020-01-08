@@ -142,11 +142,34 @@ class User_view extends CI_Controller
 
     public function user_profil()
 	{
-		
+		if ($this->isLoggedIn()) {
+            $data['title'] = "Admin | Profil";
+            $data['nama_section'] = "Profil";
+            $data['title_section'] = "Selamat Datang!";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $this->load->view('header', $data);
+                $this->load->view('user/side-nav-top', $data);
+                $this->load->view('user/profil', $data);
+                $this->load->view('user/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        }else{
+            redirect('user_view/user_login');
+        }
     }
     public function user_ubah_password()
 	{
-		
+		if ($this->isLoggedIn()) {
+            
+            $data['title'] = "Admin | Ubah Password";
+            $data['nama_section'] = "Ubah Password";
+            $data['title_section'] = "Selamat Datang!";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $this->load->view('header', $data);
+                $this->load->view('user/reset-password', $data);
+            $this->load->view('footer', $data);
+        }else{
+            redirect('user_view/login');
+        }
     }
     function isLoggedIn()
     {

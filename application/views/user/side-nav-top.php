@@ -53,8 +53,8 @@
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>User</span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="<?= base_url()?>index.php/user_view/admin_data_user">Profil</a></li>
-                  <li><a href="<?= base_url()?>index.php/user_view/admin_tambah_user">Ubah Password</a></li>
+                  <li><a href="<?= base_url()?>index.php/user_view/user_profil">Profil</a></li>
+                  <li><a href="<?= base_url()?>index.php/user_view/user_ubah_password">Ubah Password</a></li>
                 </ul>
               </li>
              
