@@ -19,7 +19,23 @@
                         <div class="card-header">
                             <h4>Full Width</h4>
                         </div>
-                        
+                        <div class="card-body">
+                                     <form action="#" method="POST" enctype="multipart/form-data">
+                                         <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <input type="text" name="judul"  class="form-control" required>
+                                             </div>
+                                             
+                                         </div>
+                                         <div class="form-group row mb-4">
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <textarea  class="ckeditor" name="editor" required></textarea>
+                                             </div>
+                                            </div>
+                                     </form>
+                                 </div>
                     </div>
                 </div>
             </div>

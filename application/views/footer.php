@@ -20,8 +20,12 @@
   <!-- Page Specific JS File
   <script src="<?= base_url()?>/assets/js/page/index.js"></script> -->
   <script src="<?= base_url()?>/assets/js/custom-console.js"></script>
+  <script src="<?= base_url()?>assets/ckeditor/ckeditor.js"></script>
 
   <script type="text/javascript">
+   CKEDITOR.replace('ckeditor' ,{
+        filebrowserImageBrowseUrl : 'kcfinder-2.3'
+    });
     $(document).ready(()=>{
 
         const custom = new CustomLogging;
