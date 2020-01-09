@@ -21,7 +21,14 @@
   <script src="<?= base_url() ?>/assets/js/page/index.js"></script> -->
   <script src="<?= base_url() ?>assets/ckeditor/ckeditor.js"></script>
   <script src="<?= base_url() ?>assets/ckfinder/ckfinder.js"></script>
-
+  <script>
+    CKEDITOR.config.filebrowserBrowseUrl = '<?= base_url()?>assets/ckfinder/ckfinder.html';
+    CKEDITOR.config.filebrowserImageBrowseUrl = '<?= base_url()?>assets/ckfinder/ckfinder.html?type=Images';
+    CKEDITOR.config.filebrowserFlashBrowseUrl = '<?= base_url()?>assets/ckfinder/ckfinder.html?type=Flash';
+    CKEDITOR.config.filebrowserUploadUrl = '<?= base_url()?>assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+    CKEDITOR.config.filebrowserImageUploadUrl = '<?= base_url()?>assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+    CKEDITOR.config.filebrowserFlashUploadUrl = '<?= base_url()?>assets/ckfinder/core/connector/php/connector.php?command=QuickUpl';
+  </script>
   <script type="text/javascript">
  
     $(document).on("click", "#ubahGejala", function() {

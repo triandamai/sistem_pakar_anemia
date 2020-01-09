@@ -42,17 +42,17 @@ CKEDITOR.editorConfig = function(config) {
 	// Set the most common block elements.
 	config.format_tags = "p;h1;h2;h3;pre";
 
-	let url = "http://localhost/anemia_desi/";
-	config.filebrowserBrowseUrl = url + "assets/ckfinder/ckfinder.html";
-	config.filebrowserImageBrowseUrl =
-		url + "assets/ckfinder/browse.php?type=images";
-	config.filebrowserFlashBrowseUrl =
-		url + "assets/ckfinder/browse.php?type=flash";
-	config.filebrowserUploadUrl = url + "assets/kcfinder/upload.php?type=files";
-	config.filebrowserImageUploadUrl =
-		url + "assets/ckfinder/upload.php?type=images";
-	config.filebrowserFlashUploadUrl =
-		url + "assets/ckfinder/upload.php?type=flash";
-	config.filebrowserWindowWidth = "1000";
-	config.filebrowserWindowHeight = "700";
+	// let url = "http://localhost/anemia_desi/";
+	// config.filebrowserBrowseUrl = url + "assets/ckfinder/ckfinder.html";
+	// config.filebrowserImageBrowseUrl =
+	// 	url + "assets/ckfinder/browse.php?type=images";
+	// config.filebrowserFlashBrowseUrl =
+	// 	url + "assets/ckfinder/browse.php?type=flash";
+	// config.filebrowserUploadUrl = url + "assets/kcfinder/upload.php?type=files";
+	// config.filebrowserImageUploadUrl =
+	// 	url + "assets/ckfinder/upload.php?type=images";
+	// config.filebrowserFlashUploadUrl =
+	// 	url + "assets/ckfinder/upload.php?type=flash";
+	// config.filebrowserWindowWidth = "1000";
+	// config.filebrowserWindowHeight = "700";
 };
