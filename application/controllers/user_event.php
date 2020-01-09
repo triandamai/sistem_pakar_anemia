@@ -153,8 +153,15 @@ class User_event extends CI_Controller
 		exit();
 	}
 
-	private function idKonsultasi(){
+	private function idKonsultasi()
+	{
+		$cek = $this->DataModel->selectMax("id_konsultasi");
 		$cek = $this->DataModel->getData('konsultasi')->row();
+		$no = (int) substr($cek->id_konsultasi, 4, 4);
+		$no++;
+		$char = "KST-";
+		$id = $char . sprintf("%03s", $no);
+		return $id;
 	}
 
 	function user_diagnosa()
@@ -164,29 +171,32 @@ class User_event extends CI_Controller
 			$jawab = $this->input->post('jawab');
 			$gejala = $this->input->post('gejala');
 			$tanggal = date("Y-m-d H:i:s");
-
-			$data = array(
-				"id" => $id_user,
-				"tgl" => $tanggal,
+			$cek = $this->session->userdata('diagnosa_data');
+			$data_arr = array(
+				"id_konsultasi" => $this->idKonsultasi(),
+				"id_user" => $id_user,
+				"tanggal_konsultasi" => $tanggal,
 			);
 
-			$this->session->set_userdata('diagnosa_data', $data);
+			// die(json_encode($data));
 
 			if ($gejala == "G1") {
-				$cek = $this->session->userdata('diagnosa_data');
 				if ($cek) {
 					$sess = array(
 						"gejala" => []
 					);
 					$this->session->unset_userdata('diagnosa_data', $sess);
+					$this->DataModel->insert('konsultasi', $data_arr);
+					$this->session->set_userdata('diagnosa_data',$data_arr);
 				}
 
 				if ($jawab == "1") {
-					$data = array(
-						"gejala" => array($gejala)
-					);
+					// $data = array(
+					// 	"gejala" => array($gejala)
+					// );
 
-					$this->session->set_userdata('diagnosa_data',$data);
+					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
+					// $this->session->set_userdata['diagnosa_data'], $data);
 
 					redirect('user_view/user_diagnosa_baru?kode=G2');
 
@@ -219,13 +229,26 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P1";
-					//query disini
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit'] = "P1"
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					$this->session->unset_userdata['diagnosa_data'];
 					redirect('user_view/hasil_diagnosa');
-					// die(json_encode($this->session->userdata['diagnosa_data']));
-					// echo "anda menderita penyakit 1";
-					// echo "dengan detail sbb : "
 				} else {
-					echo "anda juga menderita penyakit 1";
+
+					redirect('user_view/hasil_diagnosa');
+					// echo "anda juga menderita penyakit 1";
 				}
 			} elseif ($gejala == "G6") {
 				if($jawab == "1"){
@@ -253,8 +276,24 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P2";
-					die(json_encode($this->session->userdata['diagnosa_data']));
-				}else{
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit']
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					$this->session->unset_userdata['diagnosa_data'];
+					redirect('user_view/hasil_diagnosa');
+					// die(json_encode($this->session->userdata['diagnosa_data']));
+				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
 
@@ -283,8 +322,24 @@ class User_event extends CI_Controller
 				if ($jawab == "1") {
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P3";
-					die(json_encode($this->session->userdata['diagnosa_data']));
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit']
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					// die(json_encode($this->session->userdata['diagnosa_data']));
 					// redirect('user_view/user_diagnosa_baru?kode=G13');
+					$this->session->unset_userdata['diagnosa_data'];
+					redirect('user_view/hasil_diagnosa');
 				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
@@ -299,6 +354,21 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P4";
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit']
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					$this->session->unset_userdata['diagnosa_data'];
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 					redirect('user_view/hasil_diagnosa');
 				} else {
@@ -315,7 +385,23 @@ class User_event extends CI_Controller
 				if ($jawab == "1") {
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P5";
-					die(json_encode($this->session->userdata['diagnosa_data']));
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit'] = "P1"
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					$this->session->unset_userdata['diagnosa_data'];
+					// die(json_encode($this->session->userdata['diagnosa_data']));
+					redirect('user_view/hasil_diagnosa');
 				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
 				}
@@ -338,6 +424,21 @@ class User_event extends CI_Controller
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P6";
 					// die(json_encode($this->session->userdata['diagnosa_data']));
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit']
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					$this->session->unset_userdata['diagnosa_data'];
 					redirect('user_view/hasil_diagnosa');
 				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
@@ -360,6 +461,21 @@ class User_event extends CI_Controller
 				if ($jawab == "1") {
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P7";
+					$data = array();
+					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
+						$dataa = array(
+							"id_konsultasi" => $this->session->userdata['diagnosa_data']['id_konsultasi'],
+							"id_gejala" => $row
+						);
+						array_push($data,$dataa);
+					}
+					$penyakit = array(
+						"id_penyakit" => $this->session->userdata['diagnosa_data']['penyakit']
+					);
+					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
+					$this->DataModel->save_batch("detail_konsultasi",$data);
+					$this->session->unset_userdata['diagnosa_data'];
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 					redirect('user_view/hasil_diagnosa');
 				} else {
@@ -369,9 +485,10 @@ class User_event extends CI_Controller
 		}
 	}
 
-	public function user_ubah_password(){
-		if(isset($this->session->userdata['user_data'])){
-		
+	public function user_ubah_password()
+	{
+		if (isset($this->session->userdata['user_data'])) {
+
 			$new_pass = $this->input->post('password_baru');
 			$cek_pass = $this->input->post('konfirmasi_pass');
 			$this->form_validation->set_rules('password_baru', 'Password', 'trim|required|min_length[8]');

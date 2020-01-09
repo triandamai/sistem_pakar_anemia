@@ -22,9 +22,10 @@
                                 <div class="col-md-6">
                                     <address>
                                         <strong>Data Konsultan: </strong><br><br>
+                                        ID Konsultasi : <?=$penyakit->id_konsultasi?><br>
                                         Username : <?=$this->session->userdata['user_data']['username']?><br>
                                         Email : <?=$this->session->userdata['user_data']['email']?><br>
-                                        Waktu Konsultasi : <?=$this->session->userdata['diagnosa_data']['tgl']?><br>
+                                        Waktu Konsultasi : <?=$penyakit->tanggal_konsultasi?><br>
 
                                     </address>
                                 </div>
@@ -63,9 +64,9 @@
                     <div class="row mt-4">
                         <div class="col-lg-8">
                             <div class="section-title">Detail Penyakit</div>
-                            <p class="section-lead">Anda didiagnosa menderita penyakit <b>(nama penyakit)</b> </p>
+                            <p class="section-lead">Anda didiagnosa menderita penyakit <b><?=$penyakit->nama_penyakit?></b> </p>
                             <div class="section-title">Solusi</div>
-                            <p class="section-lead">The payment method that we provide is to make it easier for you to pay invoices.</p>
+                            <p class="section-lead"><?=$penyakit->solusi_penyakit?>.</p>
                         </div>
                     </div>
                 </div>
@@ -75,7 +76,7 @@
                         <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process Payment</button>
                         <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
                     </div> -->
-                    <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
+                    <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
                 </div>
             </div>
         </div>

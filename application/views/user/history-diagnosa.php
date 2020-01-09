@@ -33,15 +33,18 @@
                     <table class="table table-striped">
                       <tr>
                         <th>No</th>
+                        <th>ID Konsultasi</th>
                         <th>Tanggal Konsultasi</th>
                         <th>Hasil Konsultasi</th>
                       </tr>
-                      <?php 
+                      <?php
+                      $no=1; 
                       foreach($riwayat as $row){ ?>
                       <tr>
-                        <td>Laravel 5 Tutorial: Introduction</td>
-                        <td>2018-01-20</td>
-                        <td><button class="btn btn-md btn-info" data-toggle="modal" data-target="#exampleModal">Detail</button></td>
+                        <td><?=$no++?></td>
+                        <td><?=$row['id_konsultasi']?></td>
+                        <td><?=$row['tanggal_konsultasi']?></td>
+                        <td><a href="<?=base_url()?>index.php/user_view/hasil_diagnosa?id=<?=$row['id_konsultasi']?>" class="btn btn-md btn-info">Detail</a></td>
                       </tr>
                       <?php } ?>
                     </table>
