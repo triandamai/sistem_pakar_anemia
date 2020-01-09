@@ -61,7 +61,7 @@ class User_view extends CI_Controller
             $data['nama_section'] = "History";
             $data['title_section'] = "Daftar Diagnosa";
             $data['subtitle_section'] = "This page is just an example for you to create your own page.";
-            $riwayat = $this->DataModel->getJoin("detail_konsultasi","detail_konsultasi.id_konsultasi = konsultasi.id_konsultasi","inner");
+            // $riwayat = $this->DataModel->getJoin("detail_konsultasi","detail_konsultasi.id_konsultasi = konsultasi.id_konsultasi","inner");
             $riwayat = $this->DataModel->getWhere("konsultasi.id_user",$this->session->userdata['user_data']['id']);
             $riwayat = $this->DataModel->getData("konsultasi")->result_array();
             $data['riwayat'] = $riwayat;
@@ -129,10 +129,25 @@ class User_view extends CI_Controller
                 $data['nama_section'] = "Hasil Diagnosa";
                 $data['title_section'] = "Diagnosa Penyakit";
                 $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+                $id_kst = $this->input->get('id');
+                if($id_kst != null){
+                    $id_kst = $id_kst;
+                }else{
+                    $id_kst = $this->session->userdata['diagnosa_data']['id_konsultasi'];
+                }
                 $gejala = $this->DataModel->getJoin('detail_konsultasi','konsultasi.id_konsultasi = detail_konsultasi.id_konsultasi','inner');
-                $gejala = $this->DataModel->getWhere('id_user',$this->session->userdata['user_data']['id']);
+                $gejala = $this->DataModel->getJoin('gejala','detail_konsultasi.id_gejala = gejala.id_gejala','inner'); 
+                $gejala = $this->DataModel->getWhere('konsultasi.id_konsultasi',$id_kst);
+                // $gejala = $this->DataModel->getWhere('id_user',$this->session->userdata['user_data']['id']);
                 $gejala = $this->DataModel->getData('konsultasi')->result_array();
+
+                $penyakit = $this->DataModel->getJoin('penyakit','konsultasi.id_penyakit = penyakit.id_penyakit','inner');
+                $penyakit = $this->DataModel->getWhere('konsultasi.id_konsultasi',$id_kst);
+                $penyakit = $this->DataModel->getData('konsultasi')->row();
+                
                 $data['gejala'] = $gejala;
+                $data['penyakit'] = $penyakit;
+                // die(json_encode($data));
                 // $penyakit = $this->DataModel->
                 // $data['gejala'] = $this->session->userdata['diagnosa_data']['gejala'];
                 // die(json_encode($this->session->userdata['diagnosa_data']));

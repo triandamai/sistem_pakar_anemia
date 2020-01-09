@@ -23,6 +23,11 @@ class DataModel extends CI_Model{
         return $query;
     }
 
+    function selectMax($col){
+        $query = $this->db->select_max($col);
+        return $query;
+    }
+
     function set_data($field,$tipe){
         return $this->db->set($field,$tipe,FALSE);
     }
