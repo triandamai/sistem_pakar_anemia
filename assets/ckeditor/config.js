@@ -9,6 +9,17 @@ CKEDITOR.editorConfig = function(config) {
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
+	let url = "http://localhost/anemia_desi/";
+	config.filebrowserBrowseUrl = url + "assets/kcfinder/browse.php?type=files";
+	config.filebrowserImageBrowseUrl =
+		url + "assets/kcfinder/browse.php?type=images";
+	config.filebrowserFlashBrowseUrl =
+		url + "assets/kcfinder/browse.php?type=flash";
+	config.filebrowserUploadUrl = url + "assets/kcfinder/upload.php?type=files";
+	config.filebrowserImageUploadUrl =
+		url + "assets/kcfinder/upload.php?type=images";
+	config.filebrowserFlashUploadUrl =
+		url + "assets/kcfinder/upload.php?type=flash";
 	config.toolbarGroups = [
 		{ name: "clipboard", groups: ["clipboard", "undo"] },
 		{ name: "editing", groups: ["find", "selection", "spellchecker"] },
@@ -31,23 +42,13 @@ CKEDITOR.editorConfig = function(config) {
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
+	config.removePlugins = "image";
+	config.cloudServices_tokenUrl = "http://localhost/anemia_desi";
+	config.cloudServices_uploadUrl =
+		"http://localhost/anemia_desi/assets/upload/";
 	config.removeButtons = "Underline,Subscript,Superscript";
-
+	config.filebrowserImageBrowseUrl =
+		"http://localhost/anemia_desi/assets/kcfinder/browse.php";
 	// Set the most common block elements.
 	config.format_tags = "p;h1;h2;h3;pre";
-
-	// Simplify the dialog windows.
-	config.removeDialogTabs = "image:advanced;link:advanced";
-	config.filebrowserBrowseUrl = "../assets/kcfinder-2.3/browse.php?type=files";
-	config.filebrowserImageBrowseUrl =
-		"../assets/kcfinder-2.3/browse.php?type=images";
-	config.filebrowserFlashBrowseUrl =
-		"../../assets/kcfinder/browse.php?type=flash";
-	config.filebrowserUploadUrl =
-		"../../assets/kcfinder-2.3/upload.php?type=files";
-
-	config.filebrowserImageUploadUrl =
-		"../../assets/kcfinder-2.3/upload.php?type=images";
-	config.filebrowserFlashUploadUrl =
-		"../../assets/kcfinder-2.3/upload.php?type=flash";
 };

@@ -42,6 +42,7 @@ class Admin_event extends CI_Controller
 						"status" => true,
 					);
 					$this->session->set_userdata('admin_data', $user);
+					$this->session->set_userdata('file_manager',true);
 
 					//kie bar di redirect maring view apa pwe?
 					//aku bingung hehe

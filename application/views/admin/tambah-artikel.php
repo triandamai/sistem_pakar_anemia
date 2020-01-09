@@ -31,7 +31,8 @@
                                          <div class="form-group row mb-4">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi</label>
                                              <div class="col-sm-12 col-md-7">
-                                                 <textarea  class="ckeditor" name="editor" required></textarea>
+                                                 <textarea id="konten" class="ckeditor" name="isi" required></textarea>
+                                                 
                                              </div>
                                             </div>
                                      </form>

@@ -1,5 +1,10 @@
 <?php
-
+function myeach(&$arr) {
+    $key = key($arr);
+    $result = ($key === null) ? false : [$key, current($arr), 'key' => $key, 'value' => current($arr)];
+    next($arr);
+    return $result;
+}
 /** This file is part of KCFinder project
   *
   *      @desc GD extension class
@@ -52,8 +57,10 @@ class gd {
             $height = @imagesy($image);
 
         } elseif (is_array($image)) {
-            list($key, $width) = each($image);
-            list($key, $height) = each($image);
+            //list($key, $width) = each($image);
+            //list($key, $height) = each($image);
+            list($key, $width) = myeach($image);
+            list($key, $height) = myeach($image);
             $image = imagecreatetruecolor($width, $height);
 
         } elseif (false !== (list($width, $height, $type) = @getimagesize($image))) {

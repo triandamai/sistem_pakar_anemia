@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css"> -->
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="<?= base_url()?>/assets/css/style.css">
-  <link rel="stylesheet" href="<?= base_url()?>/assets/css/components.css">
+  <link rel="stylesheet" href="<?= base_url()?>assets/css/style.css">
+  <link rel="stylesheet" href="<?= base_url()?>assets/css/components.css">
 </head>
 
