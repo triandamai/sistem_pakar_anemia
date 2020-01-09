@@ -53,4 +53,6 @@ CKEDITOR.editorConfig = function(config) {
 		url + "assets/ckfinder/upload.php?type=images";
 	config.filebrowserFlashUploadUrl =
 		url + "assets/ckfinder/upload.php?type=flash";
+	config.filebrowserWindowWidth = "1000";
+	config.filebrowserWindowHeight = "700";
 };
