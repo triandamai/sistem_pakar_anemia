@@ -9,17 +9,7 @@ CKEDITOR.editorConfig = function(config) {
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
-	let url = "http://localhost/anemia_desi/";
-	config.filebrowserBrowseUrl = url + "assets/kcfinder/browse.php?type=files";
-	config.filebrowserImageBrowseUrl =
-		url + "assets/kcfinder/browse.php?type=images";
-	config.filebrowserFlashBrowseUrl =
-		url + "assets/kcfinder/browse.php?type=flash";
-	config.filebrowserUploadUrl = url + "assets/kcfinder/upload.php?type=files";
-	config.filebrowserImageUploadUrl =
-		url + "assets/kcfinder/upload.php?type=images";
-	config.filebrowserFlashUploadUrl =
-		url + "assets/kcfinder/upload.php?type=flash";
+
 	config.toolbarGroups = [
 		{ name: "clipboard", groups: ["clipboard", "undo"] },
 		{ name: "editing", groups: ["find", "selection", "spellchecker"] },
@@ -47,8 +37,20 @@ CKEDITOR.editorConfig = function(config) {
 	config.cloudServices_uploadUrl =
 		"http://localhost/anemia_desi/assets/upload/";
 	config.removeButtons = "Underline,Subscript,Superscript";
-	config.filebrowserImageBrowseUrl =
-		"http://localhost/anemia_desi/assets/kcfinder/browse.php";
+	// config.filebrowserImageBrowseUrl =
+	// 	"http://localhost/anemia_desi/assets/kcfinder/browse.php";
 	// Set the most common block elements.
 	config.format_tags = "p;h1;h2;h3;pre";
+
+	let url = "http://localhost/anemia_desi/";
+	config.filebrowserBrowseUrl = url + "assets/ckfinder/ckfinder.html";
+	config.filebrowserImageBrowseUrl =
+		url + "assets/ckfinder/browse.php?type=images";
+	config.filebrowserFlashBrowseUrl =
+		url + "assets/ckfinder/browse.php?type=flash";
+	config.filebrowserUploadUrl = url + "assets/kcfinder/upload.php?type=files";
+	config.filebrowserImageUploadUrl =
+		url + "assets/ckfinder/upload.php?type=images";
+	config.filebrowserFlashUploadUrl =
+		url + "assets/ckfinder/upload.php?type=flash";
 };

@@ -20,6 +20,7 @@
   <!-- Page Specific JS File
   <script src="<?= base_url() ?>/assets/js/page/index.js"></script> -->
   <script src="<?= base_url() ?>assets/ckeditor/ckeditor.js"></script>
+  <script src="<?= base_url() ?>assets/ckfinder/ckfinder.js"></script>
 
   <script type="text/javascript">
  
