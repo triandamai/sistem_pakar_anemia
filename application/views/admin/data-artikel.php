@@ -15,6 +15,7 @@
                      <p class="section-lead"><?= $subtitle_section; ?></p>
                      <div class="row">
                          <div class="col-12 col-md-12 col-lg-12">
+                         <?= $this->session->flashdata('pesan') ?>
                              <div class="card">
                                  <div class="card-header">
                                      <!-- <h4>Full Width</h4> -->

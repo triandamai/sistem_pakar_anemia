@@ -14,7 +14,11 @@ class Admin_event extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		if ($this->isLoggedIn()) {
+            
+        } else {
+            redirect('admin_view/admin_login');
+        }
 	}
 
 	public function admin_login()
@@ -36,7 +40,7 @@ class Admin_event extends CI_Controller
 					$this->DataModel->update('id_admin', $cek->id_admin, 'admin', $datas);
 
 					$user = array(
-						"id" => $cek->id_user,
+						"id" => $cek->id_admin,
 						"username" => $cek->username,
 						"email" => $cek->email,
 						"status" => true,
@@ -44,6 +48,7 @@ class Admin_event extends CI_Controller
 					$this->session->set_userdata('admin_data', $user);
 					$this->session->set_userdata('file_manager',true);
 
+				//	die(json_encode($user));
 					//kie bar di redirect maring view apa pwe?
 					//aku bingung hehe
 					redirect('admin_view');
@@ -266,5 +271,80 @@ class Admin_event extends CI_Controller
 		}
 		
 	}
+	public function admin_tambah_artikel(){
+		if(isset($_FILES['upload']['name']))
+		{
+ 			$file = $_FILES['upload']['tmp_name'];
+ 			$file_name = $_FILES['upload']['name'];
+ 			$file_name_array = explode(".", $file_name);
+ 			$extension = end($file_name_array);
+ 			$new_image_name = rand() . '.' . $extension;
+ 			chmod('upload', 0777);
+ 			$allowed_extension = array("jpg", "gif", "png");
+ 			if(in_array($extension, $allowed_extension))
+ 			{
+  			move_uploaded_file($file, 'upload/' . $new_image_name);
+  			$function_number = $_GET['CKEditorFuncNum'];
+  			$url = 'upload/' . $new_image_name;
+  			$message = '';
+			  echo "<script type='text/javascript'>
+			  window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');
+			  
+			  </script>";
+ 			}
+		}
+	}
+	public function admin_tambah_artikel_full(){
+
+		//die(json_encode($this->session->userdata['admin_data']));
+		if ($this->isLoggedIn()) {
+		$kode = "";
+		$query = $this->db->get('artikel');
+        $urutan_surat = $query->num_rows();
+        
+        if($urutan_surat == 0){
+            $urut_surat = 1;
+        }else {
+            $urut_surat = $urutan_surat+1;
+        }
+        $kode = sprintf("%03d", $urut_surat);
+            $data = array(
+				"id_artikel" => "Artikel_".$kode, 
+				"isi_artikel" => $this->input->post("isi"),
+				"id_admin" => $this->session->userdata['admin_data']['id'],
+				"thumbnail" => "",
+				"judul_artikel"  => $this->input->post("judul"),
+				"created_at" => date("Y-m-d H:i:s"),
+				"updated_at" => date("Y-m-d H:i:s")
+			);
+			$simpan = $this->DataModel->insert("artikel",$data);
+			if($simpan){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data berhasil ditambah</div>'
+				);
+				redirect('admin_view/admin_data_artikel');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Tidak dapat menambahkan data</div>'
+				);
+				redirect('admin_view/admin_tambah_artikel');
+			}
+
+        } else {
+            redirect('admin_view/admin_login');
+        }
+
+		
+	}
+	function isLoggedIn()
+    {
+        if ($this->session->userdata('admin_data') != null) {
+            return $this->session->userdata['admin_data']['status'];
+        } else {
+            return false;
+        }
+    }
 
 }

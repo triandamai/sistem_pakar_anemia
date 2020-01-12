@@ -15,12 +15,13 @@
                     <p class="section-lead"><?= $subtitle_section;?></p>
                     <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
+                    <?= $this->session->flashdata('pesan') ?>
                         <div class="card">
                         <div class="card-header">
                             <h4>Full Width</h4>
                         </div>
                         <div class="card-body">
-                                     <form action="#" method="POST" enctype="multipart/form-data">
+                                     <form action="<?= base_url()?>index.php/Admin_event/admin_tambah_artikel_full" method="POST" enctype="multipart/form-data">
                                          <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
                                              <div class="col-sm-12 col-md-7">
@@ -35,6 +36,9 @@
                                                  
                                              </div>
                                             </div>
+                                            <div class="col-sm-12 col-md-7">
+                                                 <input type="submit" name="kirim" class="btn btn-primary" value="Simpan">
+                                             </div>
                                      </form>
                                  </div>
                     </div>

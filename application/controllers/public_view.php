@@ -2,6 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Public_view extends CI_Controller {
+    
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('DataModel');
+		$this->load->library('bcrypt');
+	}
 
 	public function index()
 	{
@@ -9,6 +17,7 @@ class Public_view extends CI_Controller {
         $data['nama_section'] = "Home";
         $data['title_section'] = "Selamat Datang!";
         $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+        $data['artikel'] = $this->DataModel->getData('artikel')->result_array();
         $this->load->view('header',$data);
             $this->load->view('public/nav-top',$data);
             $this->load->view('public/home',$data);
