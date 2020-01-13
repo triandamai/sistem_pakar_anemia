@@ -14,7 +14,7 @@
             <div class="d-sm-none d-lg-inline-block">Hi, <?=$this->session->userdata['user_data']['username']?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
-              <a href="features-profile.html" class="dropdown-item has-icon">
+              <a href="<?= base_url()?>index.php/User_view/user_profile" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
               <div class="dropdown-divider"></div>
@@ -28,10 +28,10 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Anemia</a>
+            <a href="<?= base_url()?>">Anemia</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">A</a>
+            <a href="<?= base_url()?>">A</a>
           </div>
           <ul class="sidebar-menu">     
               <li>

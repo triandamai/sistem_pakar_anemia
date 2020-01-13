@@ -9,10 +9,10 @@
             <div class="container" style="height:450px;">
 			        <div class="row align-items-center">
 				        <div class="col-lg-7">
-					        <h1>Sistem Pakar Anemia</h1>
-					        <p class="lead">Let's start creating an awesome UI dashboard with Stisla, speed up your project and go to bed early.</p>
+					        <h1>Sistem Pakar Diagnosa Penyakit Anemia</h1>
+					        <p class="lead">Sistem Pakar Pendiagnosa Penyakit Anemia Pada Ibu Hamil Menggunakan Metode Forward Chaining(RSIA Bunda Arif Purwokerto)</p>
                     <div class="cta">
-                      <a class="btn btn-lg btn-warning btn-icon icon-right" href="#" target="_blank">Diagnosa Sekarang <i class="fas fa-chevron-right"></i></a>
+                      <a class="btn btn-lg btn-warning btn-icon icon-right" href="<?= base_url()?>index.php/User_view/user_diagnosa_baru" target="_blank">Diagnosa Sekarang <i class="fas fa-chevron-right"></i></a>
                     </div>
 				        </div>
 				        <div class="col-lg-5 pl-lg-5 d-lg-block d-none text-center">

@@ -4,7 +4,7 @@
     <div class="main-wrapper container">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">Anemia</a>
+        <a href="<?= base_url()?>" class="navbar-brand sidebar-gone-hide">Anemia</a>
         <div class="navbar-nav">
           <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         </div>
@@ -82,7 +82,7 @@
             <div class="d-sm-none d-lg-inline-block">Hi, <?= $this->session->userdata['user_data']['username']?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
-              <a href="features-profile.html" class="dropdown-item has-icon">
+              <a href="<?= base_url()?>" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
               <div class="dropdown-divider"></div>
@@ -114,21 +114,21 @@
             <li class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Beranda</span></a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a href="index-0.html" class="nav-link">Beranda</a></li>
+                <li class="nav-item"><a href="<?= base_url()?>index.php/User_view" class="nav-link">Beranda</a></li>
                 <li class="nav-item"><a href="<?= base_url()?>index.php/public_view/diagnosa" class="nav-link">Mulai Diagnosa</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Artikel</span></a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a href="index-0.html" class="nav-link">Semua Artikel</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Semua Artikel</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="far fa-heart"></i><span>User</span></a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a href="index-0.html" class="nav-link">Profil</a></li>
-                <li class="nav-item"><a href="index.html" class="nav-link">Keluar</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Profil</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Keluar</a></li>
               </ul>
             </li>
             
