@@ -15,10 +15,10 @@
                     <h4>Sistem Pakar Anemia</h4>
                   </div>
                   <div class="card-body">
-                  <p>Aplikasi ini dibuat untuk mendiano.</p>
+                  <p>Aplikasi ini hanya dibuat untuk mendiagnosa jenis penyakit anemia tertentu pada ibu hamil. Dengan menggunakan metode forward chaining untuk menentukan hasilnya. Tidak digabung dengan metode lainnya dan dapat menentukan hasil berdasarkan pilihan yang di pilih oleh pengguna.</p>
                   </div>
                   <div class="card-footer bg-whitesmoke">
-                    This is card footer
+                 
                   </div>
                 </div>
               </div>

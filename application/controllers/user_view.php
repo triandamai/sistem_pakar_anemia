@@ -16,7 +16,7 @@ class User_view extends CI_Controller
             $data['title'] = "User | Home";
             $data['nama_section'] = "Home";
             $data['title_section'] = "Selamat Datang!";
-            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['subtitle_section'] = "Halaman utama user Sistem Pakar.";
             $this->load->view('header', $data);
                 $this->load->view('user/side-nav-top', $data);
                 $this->load->view('user/home', $data);
@@ -60,7 +60,7 @@ class User_view extends CI_Controller
             $data['title'] = "User | History";
             $data['nama_section'] = "History";
             $data['title_section'] = "Daftar Diagnosa";
-            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['subtitle_section'] = "Daftar history diagnosa.";
             // $riwayat = $this->DataModel->getJoin("detail_konsultasi","detail_konsultasi.id_konsultasi = konsultasi.id_konsultasi","inner");
             $riwayat = $this->DataModel->getWhere("konsultasi.id_user",$this->session->userdata['user_data']['id']);
             $riwayat = $this->DataModel->getData("konsultasi")->result_array();
@@ -82,7 +82,7 @@ class User_view extends CI_Controller
             $data['title'] = "User | Penyakit";
             $data['nama_section'] = "Penyakit";
             $data['title_section'] = "Data Penyakit";
-            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['subtitle_section'] = "Kumpulan data Penyakit.";
             $data['penyakit'] = $this->DataModel->getData("penyakit")->result_array();
 
             $this->load->view('header', $data);
@@ -110,7 +110,7 @@ class User_view extends CI_Controller
             $data['title'] = "User | Diagnosa";
             $data['nama_section'] = "Diagnosa";
             $data['title_section'] = "Diagnosa Penyakit";
-            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['subtitle_section'] = "Buat diagnosa baru.";
             $data['gejala'] = $gejala;
             $this->load->view('header', $data);
             $this->load->view('user/side-nav-top', $data);
@@ -128,7 +128,7 @@ class User_view extends CI_Controller
                 $data['title'] = "User | Diagnosa";
                 $data['nama_section'] = "Hasil Diagnosa";
                 $data['title_section'] = "Diagnosa Penyakit";
-                $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+                $data['subtitle_section'] = "Hasil proses diagnosa.";
                 $id_kst = $this->input->get('id');
                 if($id_kst != null){
                     $id_kst = $id_kst;
@@ -169,7 +169,7 @@ class User_view extends CI_Controller
             $data['title'] = "User | Profil";
             $data['nama_section'] = "Profil";
             $data['title_section'] = "Selamat Datang!";
-            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['subtitle_section'] = "Halaman Profil.";
             $this->load->view('header', $data);
                 $this->load->view('user/side-nav-top', $data);
                 $this->load->view('user/profil', $data);

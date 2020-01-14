@@ -11,18 +11,13 @@
           <p class="section-lead"><?= $subtitle_section; ?></p>
           <div class="card">
             <div class="card-header">
-              <h4>Example Card</h4>
+              <h4>Sistem Pakar Anemia</h4>
             </div>
             <div class="card-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Aplikasi ini hanya dibuat untuk mendiagnosa jenis penyakit anemia tertentu pada ibu hamil. Dengan menggunakan metode forward chaining untuk menentukan hasilnya. Tidak digabung dengan metode lainnya dan dapat menentukan hasil berdasarkan pilihan yang di pilih oleh pengguna.</p>
             </div>
             <div class="card-footer bg-whitesmoke">
-              This is card footer
+              
             </div>
           </div>
         </div>

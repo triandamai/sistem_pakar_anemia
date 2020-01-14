@@ -16,7 +16,7 @@ class Admin_view extends CI_Controller
             $data['title'] = "Admin | Home";
             $data['nama_section'] = "Home";
             $data['title_section'] = "Selamat Datang!";
-            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['subtitle_section'] = "Halaman utama admin Sistem Pakar Anemia.";
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/home', $data);
@@ -63,7 +63,7 @@ class Admin_view extends CI_Controller
             $data['title'] = "Admin | Penyakit";
             $data['nama_section'] = "Tambah Penyakit";
             $data['title_section'] = "Menambahkan Penyakit";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Silahkan isi form dibawah untuk menambahkan penyakit.";
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/tambah-penyakit', $data);
@@ -77,10 +77,10 @@ class Admin_view extends CI_Controller
     public function admin_data_gejala()
     {
         if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Penyakit";
+            $data['title'] = "Admin | Gejala";
             $data['nama_section'] = "Data Gejala";
             $data['title_section'] = "Menampilkan Data Gejala";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Halaman menampilkan data-data gejala.";
             $gejala = $this->DataModel->order_by("LENGTH(id_gejala)","id_gejala");
             $gejala =  $this->DataModel->getData('gejala')->result_array();
             $data['gejala'] = $gejala;
@@ -98,10 +98,10 @@ class Admin_view extends CI_Controller
     public function admin_tambah_gejala()
     {
         if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Penyakit";
+            $data['title'] = "Admin | Gejala";
             $data['nama_section'] = "Tambah Gejala";
             $data['title_section'] = "Menambahkan Gejala";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Silahkan mengisi form untuk menambahkan data gejala.";
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/tambah-gejala', $data);
@@ -112,46 +112,15 @@ class Admin_view extends CI_Controller
         }
     }
 
-    public function admin_data_saran_penyakit()
-    {
-        if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Penyakit";
-            $data['nama_section'] = "Data Saran Penyakit";
-            $data['title_section'] = "Menampilkan Data Saran Penyakit";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
-            $this->load->view('header', $data);
-                $this->load->view('admin/side-nav-top', $data);
-                $this->load->view('admin/data-saran-penyakit', $data);
-                $this->load->view('admin/side-nav-bottom', $data);
-            $this->load->view('footer', $data);
-        } else {
-            redirect('admin_view/admin_login');
-        }
-    }
-    public function admin_tambah_saran_penyakit()
-    {
-        if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Penyakit";
-            $data['nama_section'] = "Tambah Saran Penyakit";
-            $data['title_section'] = "Menambahkan Saran Penyakit";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
-            $this->load->view('header', $data);
-                $this->load->view('admin/side-nav-top', $data);
-                $this->load->view('admin/tambah-saran-penyakit', $data);
-                $this->load->view('admin/side-nav-bottom', $data);
-            $this->load->view('footer', $data);
-        } else {
-            redirect('admin_view/admin_login');
-        }
-    }
+    
 
     public function admin_data_user()
     {
         if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Penyakit";
+            $data['title'] = "Admin | User";
             $data['nama_section'] = "Data User";
             $data['title_section'] = "Menampilkan Data User";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Menampilka data-data User.";
             $data['user'] = $this->DataModel->getData('user')->result_array();
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
@@ -165,10 +134,10 @@ class Admin_view extends CI_Controller
     public function admin_tambah_user()
     {
         if ($this->isLoggedIn()) {
-            $data['title'] = "Admin | Penyakit";
+            $data['title'] = "Admin | User";
             $data['nama_section'] = "Tambah User";
             $data['title_section'] = "Menambahkan User";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Silahkan mengisi form untuk menambahkan data gejala.";
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/tambah-user', $data);
@@ -184,7 +153,7 @@ class Admin_view extends CI_Controller
             $data['title'] = "Admin | Penyakit";
             $data['nama_section'] = "History User";
             $data['title_section'] = "Daftar History Diagnosa";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Daftar hasil diagnosa user";
             $history = $this->DataModel->getJoin("user","konsultasi.id_user = user.id_user","inner");
             $history = $this->DataModel->getData("konsultasi")->result_array();
             $data['konsultasi'] = $history;
@@ -205,7 +174,7 @@ class Admin_view extends CI_Controller
             $data['title'] = "Admin | Penyakit";
             $data['nama_section'] = "Data Artikel";
             $data['title_section'] = "Menampilkan Data Artikel";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Menampilkan data-data artikel.";
             $data['artikel'] = $this->DataModel->getData('artikel')->result_array();
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
@@ -222,7 +191,7 @@ class Admin_view extends CI_Controller
             $data['title'] = "Admin | Penyakit";
             $data['nama_section'] = "Tambah Artikel";
             $data['title_section'] = "Menambahkan Artikel";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Silahkan mengisi form untuk menambahkan data gejala.";
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/tambah-artikel', $data);
