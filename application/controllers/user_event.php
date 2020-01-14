@@ -185,7 +185,7 @@ class User_event extends CI_Controller
 					$sess = array(
 						"gejala" => []
 					);
-					$this->session->unset_userdata('diagnosa_data', $sess);
+				//	$this->session->unset_userdata('diagnosa_data', $sess);
 					$this->DataModel->insert('konsultasi', $data_arr);
 					$this->session->set_userdata('diagnosa_data',$data_arr);
 				}
@@ -243,7 +243,7 @@ class User_event extends CI_Controller
 					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
 					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
 					$this->DataModel->save_batch("detail_konsultasi",$data);
-					$this->session->unset_userdata['diagnosa_data'];
+					//$this->session->unset_userdata['diagnosa_data'];
 					redirect('user_view/hasil_diagnosa');
 				} else {
 
@@ -290,7 +290,7 @@ class User_event extends CI_Controller
 					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
 					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
 					$this->DataModel->save_batch("detail_konsultasi",$data);
-					$this->session->unset_userdata['diagnosa_data'];
+				//	$this->session->unset_userdata['diagnosa_data'];
 					redirect('user_view/hasil_diagnosa');
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 				} else {
@@ -338,7 +338,7 @@ class User_event extends CI_Controller
 					$this->DataModel->save_batch("detail_konsultasi",$data);
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 					// redirect('user_view/user_diagnosa_baru?kode=G13');
-					$this->session->unset_userdata['diagnosa_data'];
+					//$this->session->unset_userdata['diagnosa_data'];
 					redirect('user_view/hasil_diagnosa');
 				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
@@ -368,7 +368,7 @@ class User_event extends CI_Controller
 					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
 					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
 					$this->DataModel->save_batch("detail_konsultasi",$data);
-					$this->session->unset_userdata['diagnosa_data'];
+					//$this->session->unset_userdata['diagnosa_data'];
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 					redirect('user_view/hasil_diagnosa');
 				} else {
@@ -399,7 +399,7 @@ class User_event extends CI_Controller
 					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
 					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
 					$this->DataModel->save_batch("detail_konsultasi",$data);
-					$this->session->unset_userdata['diagnosa_data'];
+				//	$this->session->unset_userdata['diagnosa_data'];
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 					redirect('user_view/hasil_diagnosa');
 				} else {
@@ -438,7 +438,7 @@ class User_event extends CI_Controller
 					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
 					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
 					$this->DataModel->save_batch("detail_konsultasi",$data);
-					$this->session->unset_userdata['diagnosa_data'];
+					//$this->session->unset_userdata['diagnosa_data'];
 					redirect('user_view/hasil_diagnosa');
 				} else {
 					redirect('user_view/user_diagnosa_baru?kode=0');
@@ -475,7 +475,7 @@ class User_event extends CI_Controller
 					$id_kon = $this->session->userdata['diagnosa_data']['id_konsultasi'];
 					$this->DataModel->update("id_konsultasi",$id_kon,"konsultasi",$penyakit);
 					$this->DataModel->save_batch("detail_konsultasi",$data);
-					$this->session->unset_userdata['diagnosa_data'];
+					//$this->session->unset_userdata['diagnosa_data'];
 					// die(json_encode($this->session->userdata['diagnosa_data']));
 					redirect('user_view/hasil_diagnosa');
 				} else {
