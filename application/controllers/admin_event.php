@@ -180,25 +180,52 @@ class Admin_event extends CI_Controller
 			$deskripsi = $this->input->post('deskripsipenyakit');
 			$solusi = $this->input->post('solusipenyakit');
 
-			$data = array(
-				"id_penyakit" => $kode,
-				"nama_penyakit" => $nama,
-				"deskripsi_penyakit" => $deskripsi,
-				"solusi_penyakit" => $solusi,
-				"created_at" => date("Y-m-d H:i:s")
-			);
-
-			$penyakit = $this->DataModel->insert("penyakit",$data);
-
-			if($penyakit){
+			
+			$config['upload_path']          = realpath(APPPATH . '../upload');
+			$config['allowed_types']        = 'jpg|png|jpeg';
+			$config['file_name']            = "Penyakit_".$kode;
+			$config['overwrite']			= true;
+			$config['max_size']             = 1024; // 1MB
+		// $config['max_width']            = 1024;
+		// $config['max_height']           = 768;
+	
+		$path = $_FILES['fotopenyakit']['name'];
+		$ext = pathinfo($path, PATHINFO_EXTENSION);
+			$this->load->library('upload', $config);
+	
+			if ($this->upload->do_upload('fotopenyakit')) {
+				$data = array(
+					"id_penyakit" => $kode,
+					"foto"=>"Penyakit_".$kode.".".$ext,
+					"nama_penyakit" => $nama,
+					"deskripsi_penyakit" => $deskripsi,
+					"solusi_penyakit" => $solusi,
+					"created_at" => date("Y-m-d H:i:s")
+				);
+	
+				$penyakit = $this->DataModel->insert("penyakit",$data);
+	
+				if($penyakit){
+					$this->session->set_flashdata(
+						'pesan',
+						'<div class="alert alert-success mr-auto">Data berhasil dimasukkan</div>'
+					);
+					redirect('admin_view/admin_data_penyakit');
+				}else{
+					$this->session->set_flashdata(
+						'pesan',
+						'<div class="alert alert-danger mr-auto">Data gagal dimasukkan</div>'
+					);
+					redirect('admin_view/admin_data_penyakit');
+				}
+			}else{
 				$this->session->set_flashdata(
 					'pesan',
-					'<div class="alert alert-success mr-auto">Data berhasil dimasukkan</div>'
+					'<div class="alert alert-danger mr-auto">'.$this->upload->display_errors().'</div>'
 				);
 				redirect('admin_view/admin_data_penyakit');
-			}else{
-				echo "error cuy";
 			}
+			
 
 		}
 	}
@@ -210,37 +237,66 @@ class Admin_event extends CI_Controller
 			$nama = $this->input->post('namapenyakit');
 			$deskripsi = $this->input->post('deskripsipenyakit');
 			$solusi = $this->input->post('solusipenyakit');
+			$gambar_lama = $this->input->post('gambarlama');
+			$nama_file = "";
+	
 
-			$data = array(
-				"nama_penyakit" => $nama,
-				"deskripsi_penyakit" => $deskripsi,
-				"solusi_penyakit" => $solusi,
-				"updated_at" => date("Y-m-d H:i:s")
-			);
-			// echo json_encode($data);
-			// die();
-			$penyakit = $this->DataModel->update("id_penyakit",$kode,"penyakit",$data);
-
-			if($penyakit){
-				$this->session->set_flashdata(
-					'pesan',
-					'<div class="alert alert-success mr-auto">Data berhasil diubah</div>'
+			$config['upload_path']          = realpath(APPPATH . '../upload');
+			$config['allowed_types']        = 'jpg|png|jpeg';
+			$config['file_name']            = "Penyakit_".$kode;
+			$config['overwrite']			= true;
+			$config['max_size']             = 1024; // 1MB
+		// $config['max_width']            = 1024;
+		// $config['max_height']           = 768;
+	
+			$path = $_FILES['fotopenyakit']['name'];
+			$ext = pathinfo($path, PATHINFO_EXTENSION);
+			$this->load->library('upload', $config);
+			if (!empty($_FILES["fotopenyakit"]["name"])) {
+				$nama_file = "Penyakit_".$kode.".".$ext;
+			} else {
+				$nama_file = $gambar_lama;
+			}
+	
+			if ($this->upload->do_upload('fotopenyakit')) {
+				$data = array(
+					"nama_penyakit" => $nama,
+					"foto" => $nama_file,
+					"deskripsi_penyakit" => $deskripsi,
+					"solusi_penyakit" => $solusi,
+					"updated_at" => date("Y-m-d H:i:s")
 				);
-				redirect('admin_view/admin_data_penyakit');
+				
+				$penyakit = $this->DataModel->update("id_penyakit",$kode,"penyakit",$data);
+	
+				if($penyakit){
+					$this->session->set_flashdata(
+						'pesan',
+						'<div class="alert alert-success mr-auto">Data berhasil diubah</div>'
+					);
+					redirect('admin_view/admin_data_penyakit');
+				}else{
+					$this->session->set_flashdata(
+						'pesan',
+						'<div class="alert alert-danger mr-auto">Data gagal diubah</div>'
+					);
+					redirect('admin_view/admin_data_penyakit');
+				}
 			}else{
 				$this->session->set_flashdata(
 					'pesan',
-					'<div class="alert alert-danger mr-auto">Data gagal diubah</div>'
+					'<div class="alert alert-danger mr-auto">Data gagal diubah(method salah)</div>'
 				);
 				redirect('admin_view/admin_data_penyakit');
 			}
 		}else{
 			$this->session->set_flashdata(
 				'pesan',
-				'<div class="alert alert-danger mr-auto">Data gagal diubah(method salah)</div>'
+				'<div class="alert alert-danger mr-auto">'.$this->upload->display_errors().'</div>'
 			);
 			redirect('admin_view/admin_data_penyakit');
 		}
+			
 	}
 
 	public function admin_hapus_penyakit(){
@@ -271,29 +327,7 @@ class Admin_event extends CI_Controller
 		}
 		
 	}
-	public function admin_tambah_artikel(){
-		if(isset($_FILES['upload']['name']))
-		{
- 			$file = $_FILES['upload']['tmp_name'];
- 			$file_name = $_FILES['upload']['name'];
- 			$file_name_array = explode(".", $file_name);
- 			$extension = end($file_name_array);
- 			$new_image_name = rand() . '.' . $extension;
- 			chmod('upload', 0777);
- 			$allowed_extension = array("jpg", "gif", "png");
- 			if(in_array($extension, $allowed_extension))
- 			{
-  			move_uploaded_file($file, 'upload/' . $new_image_name);
-  			$function_number = $_GET['CKEditorFuncNum'];
-  			$url = 'upload/' . $new_image_name;
-  			$message = '';
-			  echo "<script type='text/javascript'>
-			  window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');
-			  
-			  </script>";
- 			}
-		}
-	}
+
 	public function admin_tambah_artikel_full(){
 
 		//die(json_encode($this->session->userdata['admin_data']));
@@ -316,6 +350,8 @@ class Admin_event extends CI_Controller
     // $config['max_width']            = 1024;
     // $config['max_height']           = 768;
 
+	$path = $_FILES['thumbnail']['name'];
+	$ext = pathinfo($path, PATHINFO_EXTENSION);
     	$this->load->library('upload', $config);
 
     	if ($this->upload->do_upload('thumbnail')) {
@@ -324,7 +360,7 @@ class Admin_event extends CI_Controller
 				"id_artikel" => "Artikel_".$kode, 
 				"isi_artikel" => $this->input->post("isi"),
 				"id_admin" => $this->session->userdata['admin_data']['id'],
-				"thumbnail" => "Artikel_".$kode,
+				"thumbnail" => "Artikel_".$kode.".".$ext,
 				"judul_artikel"  => $this->input->post("judul"),
 				"created_at" => date("Y-m-d H:i:s"),
 				"updated_at" => date("Y-m-d H:i:s")
@@ -355,6 +391,36 @@ class Admin_event extends CI_Controller
     } else {
         redirect('admin_view/admin_login');
 	}
+	
+}
+public function admin_hapus_artikel_full(){
+	$id = $this->input->post('kodeartikel');
+		
+		if($id != null){
+			
+			$hapus = $this->DataModel->delete('id_artikel',$id,'artikel');
+			if($hapus){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data berhasil dihapus</div>'
+				);
+				redirect('admin_view/admin_data_artikel');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Data gagal dihapus</div>'
+				);
+				redirect('admin_view/admin_data_artikel');
+			}
+		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">Data gagal dihapus!</div>'
+			);
+			redirect('admin_view/admin_data_artikel');
+		}
+		
+
 }
 	public function admin_update_artikel_full(){
 

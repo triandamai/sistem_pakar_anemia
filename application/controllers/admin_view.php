@@ -44,7 +44,7 @@ class Admin_view extends CI_Controller
             $data['title'] = "Admin | Penyakit";
             $data['nama_section'] = "Data Penyakit";
             $data['title_section'] = "Menampilkan Data Penyakit";
-            $data['subtitle_section'] = "Example of some Bootstrap table components.";
+            $data['subtitle_section'] = "Halaman ini menampilkan data-data penyakit yang sudh diinputkan oleh admin.";
             $penyakit = $this->DataModel->order_by("LENGTH(id_penyakit)","id_penyakit");
             $penyakit = $this->DataModel->getData('penyakit')->result_array();
             $data['penyakit'] = $penyakit;
@@ -226,6 +226,22 @@ class Admin_view extends CI_Controller
             $this->load->view('header', $data);
                 $this->load->view('admin/side-nav-top', $data);
                 $this->load->view('admin/tambah-artikel', $data);
+                $this->load->view('admin/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        } else {
+            redirect('admin_view/admin_login');
+        }
+    }
+    public function admin_about()
+    {
+        if ($this->isLoggedIn()) {
+            $data['title'] = "Admin | About";
+            $data['nama_section'] = "About";
+            $data['title_section'] = "Credit";
+            $data['subtitle_section'] = "Terimakasih kepada para pembuat plugin dan framework ini sehingga aplikasi sistem pakar saya bisa selesai";
+            $this->load->view('header', $data);
+                $this->load->view('admin/side-nav-top', $data);
+                $this->load->view('admin/about', $data);
                 $this->load->view('admin/side-nav-bottom', $data);
             $this->load->view('footer', $data);
         } else {

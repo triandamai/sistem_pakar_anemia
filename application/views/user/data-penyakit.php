@@ -14,7 +14,7 @@
               <div class="col-12 col-md-4 col-lg-4">
                 <article class="article article-style-c">
                   <div class="article-header">
-                    <div class="article-image" data-background="../assets/img/news/img13.jpg">
+                    <div class="article-image" data-background="<?= base_url()?>upload/<?=$row['foto']?>">
                     </div>
                   </div>
                   <div class="article-details">
@@ -23,7 +23,7 @@
                     </div>
                     <p><?=$row['deskripsi_penyakit']?> </p>
                     <div class="article-user">
-                      <!-- <img alt="image" src="../assets/img/avatar/avatar-1.png"> -->
+                      <!-- <img alt="image" src="<?= base_url()?>upload/<?=$row['foto']?>"> -->
                       <div class="article-user-details">
                         <!-- <div class="user-detail-name">
                           <a href="#">Hasan Basri</a>

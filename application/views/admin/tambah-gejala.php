@@ -49,14 +49,14 @@
                                                  <textarea class=" form-control" rows="3" name="deskripsigejala" required></textarea>
                                              </div>
                                          </div>
-                                         <div class="form-group row mb-4">
+                                         <!-- <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto</label>
                                              <div class="col-sm-12 col-md-7">
                                                  <div class="custom-file">
                                                      <input type="file" class="form-control" name="fotogejala">
                                                  </div>
                                              </div>
-                                         </div>
+                                         </div> -->
                                          <div class="form-group row mb-4">
                                              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                              <div class="col-sm-12 col-md-7">

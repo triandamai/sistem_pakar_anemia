@@ -161,6 +161,7 @@ class User_view extends CI_Controller
             redirect('user_view/index');
         }
     }
+    
 
     public function user_profil()
 	{
@@ -191,6 +192,22 @@ class User_view extends CI_Controller
             $this->load->view('footer', $data);
         }else{
             redirect('user_view/login');
+        }
+    }
+    public function user_about()
+    {
+        if ($this->isLoggedIn()) {
+            $data['title'] = "User | About";
+            $data['nama_section'] = "About";
+            $data['title_section'] = "Credit";
+            $data['subtitle_section'] = "Terimakasih kepada para pembuat plugin dan framework ini sehingga aplikasi sistem pakar saya bisa selesai";
+            $this->load->view('header', $data);
+                $this->load->view('user/side-nav-top', $data);
+                $this->load->view('admin/about', $data);
+                $this->load->view('user/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        } else {
+            redirect('admin_view/admin_login');
         }
     }
     function isLoggedIn()

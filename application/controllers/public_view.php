@@ -38,14 +38,32 @@ class Public_view extends CI_Controller {
             $this->load->view('public/nav-bottom',$data);
         $this->load->view('footer',$data);
 	}
-	public function user_register()
-	{
-		
-	}
-	
-	public function user_history()
-	{
-		
+	public function detail_artikel()
+    {
+        // if ($this->isLoggedIn()) {
+            $gejala = "";
+            $id = $this->input->get('kode');
+
+            if($id == null){
+                //$gejala = $this->DataModel->getWhere("id_artikel","G1");
+                redirect(base_url());
+            }else{
+                $artikel = $this->DataModel->getWhere("id_artikel",$id);
+            }
+            $artikel = $this->DataModel->getData("artikel")->row();
+            $data['title'] = "User | Diagnosa";
+            $data['nama_section'] = "Diagnosa";
+            $data['title_section'] = "Diagnosa Penyakit";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $data['artikel'] = $artikel;
+            $this->load->view('header', $data);
+            $this->load->view('public/nav-top', $data);
+            $this->load->view('public/detail_artikel', $data);
+            $this->load->view('public/nav-bottom', $data);
+            $this->load->view('footer', $data);
+        // } else {
+        //     redirect('user_view/index');
+        // }
     }
 
   

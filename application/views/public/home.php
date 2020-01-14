@@ -27,17 +27,17 @@
                                                 foreach ($artikel as $row) { ?>
               <div class="col-12 col-md-4 col-lg-4">
                 <article class="article article-style-c">
-                  <!-- <div class="article-header">
-                    <div class="article-image" data-background="../assets/img/news/img13.jpg">
+                  <div class="article-header">
+                    <div class="article-image" data-background="<?= base_url()?>upload/<?=$row['thumbnail']?>">
                     </div>
-                  </div> -->
+                  </div>
                   <div class="article-details">
                     <div class="article-category">
                     <!-- <a href="#">News</a> -->
                      <div class="bullet"></div> 
                      <a href="#"><?= $row['updated_at'] ?></a></div>
                     <div class="article-title">
-                      <h2><a href="#"><?= $row['judul_artikel'] ?></a></h2>
+                      <h2><a href="<?= base_url()?>index.php/Public_view/detail_artikel?kode=<?= $row['id_artikel'] ?>"><?= $row['judul_artikel'] ?></a></h2>
                     </div>
                     <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                     cillum dolore eu fugiat nulla pariatur. </p> -->

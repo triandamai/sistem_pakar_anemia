@@ -20,6 +20,7 @@
   <!-- Page Specific JS File
   <script src="<?= base_url() ?>/assets/js/page/index.js"></script> -->
   <script src="<?= base_url() ?>assets/ckeditor/ckeditor.js"></script>
+  <script src="<?= base_url()?>assets/ckeditor/adapters/jquery.js"></script>
   <script>
     CKEDITOR.config.filebrowserBrowseUrl = '<?= base_url()?>assets/ckfinder/ckfinder.html';
     CKEDITOR.config.filebrowserImageBrowseUrl = '<?= base_url()?>assets/ckfinder/ckfinder.html?type=Images';
@@ -31,7 +32,7 @@
   </script>
   <script type="text/javascript">
  
-    $(document).on("click", "#ubahGejala", ()=> {
+    $(document).on("click", "#ubahGejala", function() {
       $('input[name="kodegejala"]').val($(this).data('id'));
       $('input[name="id"]').val($(this).data('id'));
       $('input[name="namagejala"]').val($(this).data('nama'));
@@ -39,7 +40,7 @@
      
     });
 
-    $(document).on("click", "#ubahPenyakit", ()=> {
+    $(document).on("click", "#ubahPenyakit", function() {
       $('input[name="kodepenyakit"]').val($(this).data('id'));
       $('input[name="id"]').val($(this).data('id'));
       $('input[name="namapenyakit"]').val($(this).data('nama'));
@@ -47,24 +48,36 @@
       $('textarea[name="solusipenyakit"]').val($(this).data('solusi'));
     });
 
-    $(document).on("click", "#hapusGejala", ()=> {
+    $(document).on("click", "#hapusGejala", function() {
 
       $('#modalTitle').text("Apakah kamu yakin menghapus Gejala "+$(this).data('nama')+" ?");
       $('input[name="kodegejala"]').val($(this).data('id'));
     });
     
-    $(document).on("click", "#hapusPenyakit", ()=> {
+    $(document).on("click", "#hapusPenyakit", function() {
 
       $('#modalTitle').text("Apakah kamu yakin menghapus penyakit "+$(this).data('nama')+" ?");
       $('input[name="kodepenyakit"]').val($(this).data('id'));
     });
-    $(document).on("click", "#hapusPenyakit", ()=> {
 
-    $('#modalTitle').text("Apakah kamu yakin menghapus penyakit "+$(this).data('nama')+" ?");
-    $('input[name="kodepenyakit"]').val($(this).data('id'));
+
+    $(document).on("click", "#btnHapusArtikel", function() {
+
+    $('#modalTitle').text("Apakah kamu yakin menghapus artikel "+$(this).data('judul')+" ?");
+    $('input[name="kodeartikel"]').val($(this).data('id'));
     });
 
-    $(document).on("click", "#detailUser", ()=> {
+    $(document).on("click", "#btnDetailArtikel", function() {
+      $('input[name="kodepenyakit"]').val($(this).data('id'));
+      $('input[name="id"]').val($(this).data('id'));
+      $('input[name="judul"]').val($(this).data('judul'));
+   
+      $("#dataa").ckeditor();
+      $("#dataa").val("gh");
+    
+    });
+
+    $(document).on("click", "#detailUser", function() {
           $('#username').text($(this).data('username'));
           $('#email').text($(this).data('email'));
           $('#created_at').text($(this).data('created'));
@@ -76,9 +89,9 @@
 
     $(document).ready(() => {
  
-      const custom = new CustomLogging;
-      custom.setBodyStyle({ color: 'red' });
-      custom.log('Warning !! Ini adalah mode developer bijaklah dalam menggunakan tool ini');
+      // const custom = new CustomLogging;
+      // custom.setBodyStyle({ color: 'red' });
+      // custom.log('Warning !! Ini adalah mode developer bijaklah dalam menggunakan tool ini');
    
     });
  </script>

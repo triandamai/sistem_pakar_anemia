@@ -38,8 +38,8 @@
                                                      <td><?= $row['judul_artikel'] ?></td>
                                                      <td><?= $row['created_at'] ?></td>
                                                      <td>
-                                                        <a href="#" 
-                                                        id="btnDetail"
+                                                        <!-- <a href="#" 
+                                                        id="btnDetailArtikel"
                                                         data-id="<?= $row['id_artikel'] ?>" 
                                                         data-judul="<?= $row['judul_artikel'] ?>" 
                                                         data-isi="<?= htmlentities($row['isi_artikel']) ?>" 
@@ -48,9 +48,9 @@
                                                         data-updated-at="<?= $row['updated_at'] ?>" 
                                                         data-toggle="modal"  
                                                         data-target="#modalUbah"
-                                                        class="btn btn-secondary">Detail</a>
+                                                        class="btn btn-secondary">Detail</a> -->
                                                         <a href="#" 
-                                                        id="btnHapus"
+                                                        id="btnHapusArtikel"
                                                         data-id="<?= $row['id_artikel'] ?>" 
                                                         data-judul="<?= $row['judul_artikel'] ?>" 
                                                         data-isi="<?= htmlentities($row['isi_artikel']) ?>" 
@@ -122,7 +122,7 @@
                                          <div class="form-group row mb-4">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi</label>
                                              <div class="col-sm-12 col-md-7">
-                                                 <textarea id="konten" class="ckeditor" name="isi" required></textarea>
+                                                 <textarea  class="ckeditor" name="isi" required></textarea>
                                                  
                                              </div>
                                         </div>
@@ -160,8 +160,8 @@
                                                     
         </div>
       <div class="modal-footer bg-whitesmoke br">
-      <form id="formHapus" action="<?= base_url() ?>index.php/admin_event/admin_hapus_gejala" method="post">
-        <input type="hidden" name="kodegejala"/>
+      <form id="formHapus" action="<?= base_url() ?>index.php/admin_event/admin_hapus_artikel_full" method="post">
+        <input type="hidden" name="kodeartikel"/>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
         <button type="submit" class="btn btn-danger">Hapus</button>
       </form>
