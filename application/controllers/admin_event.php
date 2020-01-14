@@ -227,6 +227,12 @@ class Admin_event extends CI_Controller
 			}
 			
 
+		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">Gagal</div>'
+			);
+			redirect('admin_view/admin_data_penyakit');
 		}
 	}
 
@@ -285,14 +291,14 @@ class Admin_event extends CI_Controller
 			}else{
 				$this->session->set_flashdata(
 					'pesan',
-					'<div class="alert alert-danger mr-auto">Data gagal diubah(method salah)</div>'
+					'<div class="alert alert-danger mr-auto">'.$this->upload->display_errors().'</div>'
 				);
 				redirect('admin_view/admin_data_penyakit');
 			}
 		}else{
 			$this->session->set_flashdata(
 				'pesan',
-				'<div class="alert alert-danger mr-auto">'.$this->upload->display_errors().'</div>'
+				'<div class="alert alert-danger mr-auto">Gagal</div>'
 			);
 			redirect('admin_view/admin_data_penyakit');
 		}
