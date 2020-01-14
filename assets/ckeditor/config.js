@@ -14,8 +14,8 @@ CKEDITOR.editorConfig = function(config) {
 		{ name: "clipboard", groups: ["clipboard", "undo"] },
 		{ name: "editing", groups: ["find", "selection", "spellchecker"] },
 		{ name: "links" },
-		{ name: "insert" },
-		{ name: "forms" },
+		// { name: "insert" },
+		// { name: "forms" },
 		{ name: "tools" },
 		{ name: "document", groups: ["mode", "document", "doctools"] },
 		{ name: "others" },
@@ -33,6 +33,7 @@ CKEDITOR.editorConfig = function(config) {
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removePlugins = "image";
+	config.removePlugins = "easyImage";
 	config.cloudServices_tokenUrl = "http://localhost/anemia_desi";
 	config.cloudServices_uploadUrl =
 		"http://localhost/anemia_desi/assets/upload/";

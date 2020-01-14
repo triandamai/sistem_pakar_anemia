@@ -35,7 +35,15 @@
                                                  <textarea id="konten" class="ckeditor" name="isi" required></textarea>
                                                  
                                              </div>
-                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <div class="custom-file">
+                                                     <input type="file" class="form-control" name="thumbnail">
+                                                 </div>
+                                             </div>
+                                         </div>
                                             <div class="col-sm-12 col-md-7">
                                                  <input type="submit" name="kirim" class="btn btn-primary" value="Simpan">
                                              </div>

@@ -306,13 +306,25 @@ class Admin_event extends CI_Controller
             $urut_surat = 1;
         }else {
             $urut_surat = $urutan_surat+1;
-        }
-        $kode = sprintf("%03d", $urut_surat);
+		}
+		$kode = sprintf("%03d", $urut_surat);
+		$config['upload_path']          = realpath(APPPATH . '../upload');
+    	$config['allowed_types']        = 'jpg|png|jpeg';
+    	$config['file_name']            = "Artikel_".$kode;
+    	$config['overwrite']			= true;
+    	$config['max_size']             = 1024; // 1MB
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    	$this->load->library('upload', $config);
+
+    	if ($this->upload->do_upload('thumbnail')) {
+			
             $data = array(
 				"id_artikel" => "Artikel_".$kode, 
 				"isi_artikel" => $this->input->post("isi"),
 				"id_admin" => $this->session->userdata['admin_data']['id'],
-				"thumbnail" => "",
+				"thumbnail" => "Artikel_".$kode,
 				"judul_artikel"  => $this->input->post("judul"),
 				"created_at" => date("Y-m-d H:i:s"),
 				"updated_at" => date("Y-m-d H:i:s")
@@ -331,13 +343,82 @@ class Admin_event extends CI_Controller
 				);
 				redirect('admin_view/admin_tambah_artikel');
 			}
+   		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">'.$this->upload->display_errors().'</div>'
+			);
+			redirect('admin_view/admin_tambah_artikel');
+		}
+        
 
-        } else {
-            redirect('admin_view/admin_login');
-        }
-
-		
+    } else {
+        redirect('admin_view/admin_login');
 	}
+}
+	public function admin_update_artikel_full(){
+
+		//die(json_encode($this->session->userdata['admin_data']));
+		if ($this->isLoggedIn()) {
+		$kode = "";
+		$query = $this->db->get('artikel');
+        $urutan_surat = $query->num_rows();
+        
+        if($urutan_surat == 0){
+            $urut_surat = 1;
+        }else {
+            $urut_surat = $urutan_surat+1;
+		}
+		$kode = sprintf("%03d", $urut_surat);
+		$config['upload_path']          = realpath(APPPATH . '../upload');
+    	$config['allowed_types']        = 'jpg|png|jpeg';
+    	$config['file_name']            = "Artikel_".$kode;
+    	$config['overwrite']			= true;
+    	$config['max_size']             = 1024; // 1MB
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    	$this->load->library('upload', $config);
+
+    	if ($this->upload->do_upload('thumbnail')) {
+			
+            $data = array(
+				"id_artikel" => "Artikel_".$kode, 
+				"isi_artikel" => $this->input->post("isi"),
+				"id_admin" => $this->session->userdata['admin_data']['id'],
+				"thumbnail" => "Artikel_".$kode,
+				"judul_artikel"  => $this->input->post("judul"),
+				"created_at" => date("Y-m-d H:i:s"),
+				"updated_at" => date("Y-m-d H:i:s")
+			);
+			$simpan = $this->DataModel->insert("artikel",$data);
+			if($simpan){
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-success mr-auto">Data berhasil ditambah</div>'
+				);
+				redirect('admin_view/admin_data_artikel');
+			}else{
+				$this->session->set_flashdata(
+					'pesan',
+					'<div class="alert alert-danger mr-auto">Tidak dapat menambahkan data</div>'
+				);
+				redirect('admin_view/admin_tambah_artikel');
+			}
+   		}else{
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-danger mr-auto">'.$this->upload->display_errors().'</div>'
+			);
+			redirect('admin_view/admin_tambah_artikel');
+		}
+        
+
+    } else {
+        redirect('admin_view/admin_login');
+    }
+	
+}
 	function isLoggedIn()
     {
         if ($this->session->userdata('admin_data') != null) {

@@ -37,7 +37,31 @@
                                                      <td><?= $no ?></td>
                                                      <td><?= $row['judul_artikel'] ?></td>
                                                      <td><?= $row['created_at'] ?></td>
-                                                     <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                                     <td>
+                                                        <a href="#" 
+                                                        id="btnDetail"
+                                                        data-id="<?= $row['id_artikel'] ?>" 
+                                                        data-judul="<?= $row['judul_artikel'] ?>" 
+                                                        data-isi="<?= htmlentities($row['isi_artikel']) ?>" 
+                                                        data-thumbnail="<?= $row['thumbnail'] ?>"
+                                                        data-created_at="<?= $row['created_at'] ?>"
+                                                        data-updated-at="<?= $row['updated_at'] ?>" 
+                                                        data-toggle="modal"  
+                                                        data-target="#modalUbah"
+                                                        class="btn btn-secondary">Detail</a>
+                                                        <a href="#" 
+                                                        id="btnHapus"
+                                                        data-id="<?= $row['id_artikel'] ?>" 
+                                                        data-judul="<?= $row['judul_artikel'] ?>" 
+                                                        data-isi="<?= htmlentities($row['isi_artikel']) ?>" 
+                                                        data-thumbnail="<?= $row['thumbnail'] ?>"
+                                                        data-created_at="<?= $row['created_at'] ?>"
+                                                        data-updated-at="<?= $row['updated_at'] ?>" 
+                                                        data-toggle="modal"  
+                                                        data-target="#modalHapus"
+                                                        class="btn btn-danger">Hapus</a>
+                                                     </td>
+                                                     
                                                  </tr>
                                              <?php
                                                     $no++;
@@ -68,3 +92,80 @@
                  </div>
      </section>
  </div>
+
+
+ <div class="modal fade" tabindex="-1" role="dialog" id="modalUbah">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url() ?>index.php/admin_event/admin_ubah_gejala" method="POST" enctype="multipart/form-data">
+      <div class="modal-body">
+                                        <div class="form-group row mb-4">
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Id</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <input type="text" name="id"  class="form-control" required disabled>
+                                             </div>
+                                             
+                                         </div>
+                                        <div class="form-group row mb-4">
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <input type="text" name="judul"  class="form-control" required>
+                                             </div>
+                                             
+                                         </div>
+                                         <div class="form-group row mb-4">
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <textarea id="konten" class="ckeditor" name="isi" required></textarea>
+                                                 
+                                             </div>
+                                        </div>
+                                        <div class="form-group row mb-4">
+                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto</label>
+                                             <div class="col-sm-12 col-md-7">
+                                                 <div class="custom-file">
+                                                     <input type="file" class="form-control" name="thumbnail">
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     
+                                         
+                                     
+        </div>                  
+      <div class="modal-footer bg-whitesmoke br">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="kirim" value="Simpan" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalHapus">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modalTitle" class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+                                                    
+        </div>
+      <div class="modal-footer bg-whitesmoke br">
+      <form id="formHapus" action="<?= base_url() ?>index.php/admin_event/admin_hapus_gejala" method="post">
+        <input type="hidden" name="kodegejala"/>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-danger">Hapus</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
