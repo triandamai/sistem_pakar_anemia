@@ -187,8 +187,8 @@ class User_event extends CI_Controller
 					);
 				//	$this->session->unset_userdata('diagnosa_data', $sess);
 					$this->DataModel->insert('konsultasi', $data_arr);
-					$this->session->set_userdata('diagnosa_data',$data_arr);
 				}
+				$this->session->set_userdata('diagnosa_data',$data_arr);
 
 				if ($jawab == "1") {
 					// $data = array(
@@ -229,6 +229,7 @@ class User_event extends CI_Controller
 				if($jawab == "1"){
 					$this->session->userdata['diagnosa_data']['gejala'][] = $gejala;
 					$this->session->userdata['diagnosa_data']['penyakit'] = "P1";
+					// die(json_encode($this->session->userdata()));
 					$data = array();
 					foreach($this->session->userdata['diagnosa_data']['gejala'] as $row){
 						$dataa = array(
