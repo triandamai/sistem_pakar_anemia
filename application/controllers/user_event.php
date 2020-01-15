@@ -178,14 +178,14 @@ class User_event extends CI_Controller
 				"tanggal_konsultasi" => $tanggal,
 			);
 
-			// die(json_encode($data));
+			// die(json_encode($data_arr));
 
 			if ($gejala == "G1") {
 				if ($cek) {
 					$sess = array(
 						"gejala" => []
 					);
-				//	$this->session->unset_userdata('diagnosa_data', $sess);
+					$this->session->unset_userdata('diagnosa_data', $sess);
 					$this->DataModel->insert('konsultasi', $data_arr);
 				}
 				$this->session->set_userdata('diagnosa_data',$data_arr);
