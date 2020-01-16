@@ -217,6 +217,22 @@ class Admin_view extends CI_Controller
             redirect('admin_view/admin_login');
         }
     }
+    public function user_profil()
+	{
+		if ($this->isLoggedIn()) {
+            $data['title'] = "User | Profil";
+            $data['nama_section'] = "Profil";
+            $data['title_section'] = "Selamat Datang!";
+            $data['subtitle_section'] = "Halaman Profil.";
+            $this->load->view('header', $data);
+                $this->load->view('user/side-nav-top', $data);
+                $this->load->view('user/profil', $data);
+                $this->load->view('user/side-nav-bottom', $data);
+            $this->load->view('footer', $data);
+        }else{
+            redirect('user_view/user_login');
+        }
+    }
 
     function isLoggedIn()
     {

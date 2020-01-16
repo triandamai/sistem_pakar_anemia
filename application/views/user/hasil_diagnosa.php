@@ -67,6 +67,8 @@
                             <p class="section-lead">Anda didiagnosa menderita penyakit <b><?=$penyakit->nama_penyakit?></b> </p>
                             <div class="section-title">Solusi</div>
                             <p class="section-lead"><?=$penyakit->solusi_penyakit?>.</p>
+                            <div class="section-title">Lanjutan</div>
+                            <p class="section-lead">Jika masalah berlanjut atau semakin parah silahkan hubungi klinik/dokter/bidan terdekat.</p>
                         </div>
                     </div>
                 </div>
