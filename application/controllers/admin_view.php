@@ -217,23 +217,40 @@ class Admin_view extends CI_Controller
             redirect('admin_view/admin_login');
         }
     }
-    public function user_profil()
+    public function admin_profil()
 	{
 		if ($this->isLoggedIn()) {
             $data['title'] = "User | Profil";
             $data['nama_section'] = "Profil";
             $data['title_section'] = "Selamat Datang!";
             $data['subtitle_section'] = "Halaman Profil.";
+            $this->DataModel->getWhere("id_admin",$this->session->userdata['admin_data']['id']);
+            $data['profil'] = $this->DataModel->getData('admin')->row();
             $this->load->view('header', $data);
-                $this->load->view('user/side-nav-top', $data);
-                $this->load->view('user/profil', $data);
-                $this->load->view('user/side-nav-bottom', $data);
+                $this->load->view('admin/side-nav-top', $data);
+                $this->load->view('admin/profil', $data);
+                $this->load->view('admin/side-nav-bottom', $data);
             $this->load->view('footer', $data);
         }else{
             redirect('user_view/user_login');
         }
     }
-
+    public function admin_ubah_password()
+	{
+       // die(json_encode($this->session->userdata['admin_data']));
+		if ($this->isLoggedIn()) {
+            
+            $data['title'] = "User | Ubah Password";
+            $data['nama_section'] = "Ubah Password";
+            $data['title_section'] = "Selamat Datang!";
+            $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+            $this->load->view('header', $data);
+                $this->load->view('admin/reset-password', $data);
+            $this->load->view('footer', $data);
+        }else{
+            redirect('user_view/login');
+        }
+    }
     function isLoggedIn()
     {
         if ($this->session->userdata('admin_data') != null) {

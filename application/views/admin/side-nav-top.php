@@ -69,7 +69,14 @@
                   <li><a class="beep beep-sidebar" href="<?= base_url()?>index.php/admin_view/admin_history_user">History</a></li>
                 </ul>
               </li>
-             
+              <li class="menu-header">Profil</li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Profil</span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<?= base_url()?>index.php/admin_view/admin_profil">Profil</a></li>
+                  <!-- <li><a href="<?= base_url()?>index.php/admin_view/admin_ubah_password">Ubah Password</a></li> -->
+                </ul>
+              </li>
              
          </ul>
 

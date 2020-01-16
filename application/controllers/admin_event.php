@@ -10,6 +10,7 @@ class Admin_event extends CI_Controller
 		parent::__construct();
 		$this->load->model('DataModel');
 		$this->load->library('bcrypt');
+		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -491,6 +492,66 @@ public function admin_hapus_artikel_full(){
     }
 	
 }
+
+	public function admin_ubah_password()
+	{
+		if (isset($this->session->userdata['admin_data'])) {
+
+			$new_pass = $this->input->post('password_baru');
+			$cek_pass = $this->input->post('konfirmasi_pass');
+			$this->form_validation->set_rules('password_baru', 'Password', 'trim|required|min_length[8]');
+			if($this->form_validation->run() == FALSE){
+				$this->session->set_flashdata(
+					'reset-error',
+					'<div class="alert alert-danger mr-auto">Password minimal 8 Karakter.</div>'
+				);
+				redirect('admin_view/admin_ubah_password');
+			}else{
+				if($cek_pass === $new_pass){
+				
+					$dataupdate = array(
+						'password' => $new_pass,
+						'updated_at' => date("Y-m-d H:i:s")
+					);
+				//	die(json_encode($dataupdate));
+					$update = $this->DataModel->update('id_admin',$this->session->userdata['admin_data']['id'],'admin',$dataupdate);
+					if($update){
+						$this->session->set_flashdata(
+							'login-error',
+							'<div class="alert alert-success mr-auto">Ubah Password Berhasil!</div>'
+						);
+						$sess_array = array(
+							'email' => '',
+						);
+						$this->session->unset_userdata('admin_data', $sess_array);
+						redirect('/admin_view/admin_login', 'refresh');
+						exit();
+						//$this->admin_logout();
+					}else{
+						$this->session->set_flashdata(
+							'reset-error',
+							'<div class="alert alert-danger mr-auto">Ubah Password Gagal!</div>'
+						);
+						redirect("admin_view/admin_ubah_password");
+					}
+				}else{
+					$this->session->set_flashdata(
+						'reset-error',
+						'<div class="alert alert-danger mr-auto">Konfirmasi password tidak sesuai</div>'
+					);
+					redirect("admin_view/admin_ubah_password");
+				}
+			}
+
+			
+		}else{
+			$this->session->set_flashdata(
+				'login-error',
+				'<div class="alert alert-danger mr-auto">Tidak bisa merubah password,Kamu sudah logout</div>'
+			);
+			redirect('admin_view/admin_login');
+		}
+	}
 	function isLoggedIn()
     {
         if ($this->session->userdata('admin_data') != null) {
