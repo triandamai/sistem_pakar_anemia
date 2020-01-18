@@ -86,57 +86,65 @@ class User_event extends CI_Controller
 					'<div class="alert alert-danger mr-auto">Password minimal 8 Karakter.</div>'
 				);
 				redirect('user_view/user_register');
-			}else{
-			$cek = $this->DataModel->select(array("username", "email"));
-			$cek = $this->DataModel->get_whereArr("user", "username = '" . $username . "' or email = '" . $email . "'")->row();
-			if ($cek != null) {
-				if ($cek->username == $username) {
-					$this->session->set_flashdata(
-						'pesan',
-						'<div class="alert alert-danger mr-auto">Username yang anda masukkan sudah ada.</div>'   //tambaih dimissable yan
-					);
-					redirect('user_view/user_register');
-				} else if ($cek->email == $email) {
-					$this->session->set_flashdata(
-						'pesan',
-						'<div class="alert alert-danger mr-auto">Email yang anda masukkan sudah ada.</div>'
-					);
-					redirect('user_view/user_register');
-				}
 			} else {
-				if ($password == $cpassword) {
-					$data = array(
-						"username" => $username,
-						"email"    => $email,
-						"password" => $this->bcrypt->hash_password($password),
-						"created_at" => date("Y-m-d H:i:s")
-					);
-
-					$register = $this->DataModel->set_data('id_user', 'UUID()');
-					$register = $this->DataModel->insert('user', $data);
-
-					if ($register) {
+				$cek = $this->DataModel->select(array("username", "email"));
+				$cek = $this->DataModel->get_whereArr("user", "username = '" . $username . "' or email = '" . $email . "'")->row();
+				if ($cek != null) {
+					if ($cek->username == $username) {
 						$this->session->set_flashdata(
 							'pesan',
-							'<div class="alert alert-success mr-auto">Akun berhasil dibuat, anda dapat melanjutkan untuk login</div>'
+							'<div class="alert alert-danger mr-auto">Username yang anda masukkan sudah ada.</div>'   //tambaih dimissable yan
 						);
-						redirect('user_view/user_login');
-						//echo $this->session->flashdata('pesan');
-					} else {
+						redirect('user_view/user_register');
+					} else if ($cek->email == $email) {
 						$this->session->set_flashdata(
 							'pesan',
-							'<div class="alert alert-danger mr-auto">Ada Kesalahan server.</div>'
+							'<div class="alert alert-danger mr-auto">Email yang anda masukkan sudah ada.</div>'
 						);
 						redirect('user_view/user_register');
 					}
 				} else {
-					$this->session->set_flashdata(
-						'pesan',
-						'<div class="alert alert-danger mr-auto">Password yang anda masukkan tidak sama.</div>'
-					);
-					redirect('user_view/user_register');
+					if ($password == $cpassword) {
+						$data = array(
+							"username" => $username,
+							"email"    => $email,
+							"password" => $this->bcrypt->hash_password($password),
+							"token"	   => base64_encode($username . "_" . $email),
+							"created_at" => date("Y-m-d H:i:s")
+						);
+						$register = $this->DataModel->set_data('id_user', 'UUID()');
+						$register = $this->DataModel->insert('user', $data);
+						// die(json_encode($register));
+						if ($register) {
+							if ($this->send_verification($email, base64_encode($username . "_" . $email))) {
+								$this->session->set_flashdata(
+									'pesan',
+									'<div class="alert alert-success mr-auto">Akun berhasil dibuat, untuk dapat melanjutkan silahkan cek email anda.</div>'
+								);
+							} else {
+								$this->session->set_flashdata(
+									'pesan',
+									$this->email->print_debugger()
+									// "<div class='alert alert-danger mr-auto'>Ada masalah pengiriman verifikasi email , Error: '".$this->email->print_debugger(array('headers'));."' </div>"
+								);
+							}
+							redirect('user_view/user_login');
+							//echo $this->session->flashdata('pesan');
+						} else {
+							$this->session->set_flashdata(
+								'pesan',
+								'<div class="alert alert-danger mr-auto">Ada Kesalahan server.</div>'
+							);
+							redirect('user_view/user_register');
+						}
+					} else {
+						$this->session->set_flashdata(
+							'pesan',
+							'<div class="alert alert-danger mr-auto">Password yang anda masukkan tidak sama.</div>'
+						);
+						redirect('user_view/user_register');
+					}
 				}
-			}
 			}
 
 			
@@ -162,6 +170,45 @@ class User_event extends CI_Controller
 		$char = "KST-";
 		$id = $char . sprintf("%03s", $no);
 		return $id;
+	}
+
+	private function send_verification($email, $code)
+	{
+		$config = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'smtp.googlemail.com',
+			'smtp_port' => '465',
+			'smtp_user' => 'desiputri875@gmail.com', // informasi rahasia ini jangan di gunakan sembarangan
+			'smtp_pass' => '10google1010', // informasi rahasia ini jangan di gunakan sembarangan
+			'smtp_crypto' => 'ssl',
+			'mailtype' => 'html',
+			'charset' => 'iso-8859-1',
+			'wordwrap' => TRUE
+		);
+
+		$message =     "
+                  <html>
+                  <head>
+                      <title>Verifikasi Akun anda</title>
+                  </head>
+                  <body>
+                      <h2>Terima kasih sudah Mendaftar.</h2>
+                      <p>Akun anda:</p>
+                      <p>Email: " . $email . "</p>
+                      <p>Silahkan klik link berikut untuk memverifikasi akun anda.</p>
+                      <h4><a href='" . base_url() . "user/verification?code=" . $code . "'>Verifikasi Akun Saya</a></h4>
+                  </body>
+                  </html>
+                  ";
+
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from($config['smtp_user']);
+		$this->email->to($email);
+		$this->email->subject('Verifikasi akun');
+		$this->email->message($message);
+
+		return $this->email->send();
 	}
 
 	function user_diagnosa()
