@@ -27,30 +27,38 @@ class User_event extends CI_Controller
 			$cek = $this->DataModel->getData('user')->row();
 
 			if ($cek != null) {
-				if($this->bcrypt->check_password($password,$cek->password)){
-				// if ($cek->password == $password) {
-					$datas = array(
-						"updated_at" => date("Y-m-d H:i:s")
-					);
+				if ($cek->status == true) {
+					if ($this->bcrypt->check_password($password, $cek->password)) {
+						// if ($cek->password == $password) {
+						$datas = array(
+							"updated_at" => date("Y-m-d H:i:s")
+						);
 
-					$this->DataModel->update('id_user', $cek->id_user, 'user', $datas);
+						$this->DataModel->update('id_user', $cek->id_user, 'user', $datas);
 
-					$user = array(
-						"id" => $cek->id_user,
-						"username" => $cek->username,
-						"email" => $cek->email,
-						"status" => true,
-					);
-					$this->session->set_userdata('user_data', $user);
+						$user = array(
+							"id" => $cek->id_user,
+							"username" => $cek->username,
+							"email" => $cek->email,
+							"status" => $cek->status,
+						);
+						$this->session->set_userdata('user_data', $user);
 
-					//kie bar di redirect maring view apa pwe?
-					//aku bingung hehe
-					//A: mng halaman user_view/index
-					redirect("user_view");
-				} else {
+						//kie bar di redirect maring view apa pwe?
+						//aku bingung hehe
+						//A: mng halaman user_view/index
+						redirect("user_view");
+					} else {
+						$this->session->set_flashdata(
+							'login-error',
+							'<div class="alert alert-danger mr-auto">Password salah</div>'
+						);
+						redirect("user_view/user_login");
+					}
+				}else{
 					$this->session->set_flashdata(
 						'login-error',
-						'<div class="alert alert-danger mr-auto">Password salah</div>'
+						'<div class="alert alert-danger mr-auto">Akun anda belum aktif, silahkan cek email untuk mengaktifkan akun.</div>'
 					);
 					redirect("user_view/user_login");
 				}
@@ -196,7 +204,7 @@ class User_event extends CI_Controller
                       <p>Akun anda:</p>
                       <p>Email: " . $email . "</p>
                       <p>Silahkan klik link berikut untuk memverifikasi akun anda.</p>
-                      <h4><a href='" . base_url() . "user/verification?code=" . $code . "'>Verifikasi Akun Saya</a></h4>
+                      <h4><a href='" . base_url() . "index.php/user_event/user_verification?code=" . $code . "'>Verifikasi Akun Saya</a></h4>
                   </body>
                   </html>
                   ";
@@ -209,6 +217,23 @@ class User_event extends CI_Controller
 		$this->email->message($message);
 
 		return $this->email->send();
+	}
+
+	function user_verification()
+	{
+		$code = $this->input->get('code');
+		// die(json_encode($code));
+		$cek = $this->DataModel->getWhere('token', $code);
+		$cek = $this->DataModel->getData('user')->row();
+		if ($cek != null) {
+			$data = array(
+				"status" => true
+			);
+			if ($this->DataModel->update('id_user', $cek->id_user, 'user', $data)) {
+				redirect('user_view/user_verification');
+			}
+		} else {
+		}
 	}
 
 	function user_diagnosa()

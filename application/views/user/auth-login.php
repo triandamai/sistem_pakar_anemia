@@ -12,6 +12,7 @@
              
 
               <div class="card-body">
+              <?= $this->session->flashdata('pesan') ?>
               <?= $this->session->flashdata('login-error'); ?>
                 <form method="POST" action="<?= base_url()?>index.php/user_event/user_login" class="needs-validation" novalidate="">
                   <div class="form-group">

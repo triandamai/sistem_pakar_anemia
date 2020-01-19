@@ -31,7 +31,8 @@ class User_view extends CI_Controller
     {
         if ($this->isLoggedIn()) {
             redirect('user_view/index');
-        }else{
+        } else {
+            // die(json_encode($this->session->userdata()));   
             $data['title'] = "User | Login";
             $data['nama_section'] = "Login";
             $data['title_section'] = "Selamat Datang!";
@@ -48,15 +49,27 @@ class User_view extends CI_Controller
         $data['nama_section'] = "Membuat Akun";
         $data['title_section'] = "Selamat Datang!";
         $data['subtitle_section'] = "This page is just an example for you to create your own page.";
-        $this->load->view('header',$data);
-            $this->load->view('user/auth-register',$data);
-        $this->load->view('footer',$data);
-	}
-	
-	public function user_history()
-	{
-		if ($this->isLoggedIn()) {
-           
+        $this->load->view('header', $data);
+        $this->load->view('user/auth-register', $data);
+        $this->load->view('footer', $data);
+    }
+
+    public function user_verification()
+    {
+        $data['title'] = "User | Verifikasi";
+        $data['nama_section'] = "Verifikasi Akun";
+        $data['title_section'] = "Selamat Datang!";
+        $data['subtitle_section'] = "This page is just an example for you to create your own page.";
+        $this->load->view('header', $data);
+            $this->load->view('public/nav-top', $data);
+            $this->load->view('user/auth-verification', $data);
+        $this->load->view('footer', $data);
+    }
+
+    public function user_history()
+    {
+        if ($this->isLoggedIn()) {
+
             $data['title'] = "User | History";
             $data['nama_section'] = "History";
             $data['title_section'] = "Daftar Diagnosa";
