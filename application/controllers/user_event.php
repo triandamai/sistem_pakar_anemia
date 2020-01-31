@@ -118,7 +118,8 @@ class User_event extends CI_Controller
 							"email"    => $email,
 							"password" => $this->bcrypt->hash_password($password),
 							"token"	   => base64_encode($username . "_" . $email),
-							"created_at" => date("Y-m-d H:i:s")
+							"created_at" => date("Y-m-d H:i:s"),
+							"updated_at" => date("Y-m-d H:i:s")
 						);
 						$register = $this->DataModel->set_data('id_user', 'UUID()');
 						$register = $this->DataModel->insert('user', $data);
